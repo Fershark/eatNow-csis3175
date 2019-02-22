@@ -1,5 +1,6 @@
 package ca.douglascollege.eatnow;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         setTheme(R.style.NoActionBar);
         setContentView(R.layout.activity_welcome);
 
-        btnRegister = (Button) findViewById(R.id.btnWelcomeRegister);
-        btnLogin = (Button) findViewById(R.id.btnWelcomeLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
     }
@@ -25,9 +26,13 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnWelcomeRegister:
+            case R.id.btnRegister:
+                Intent iRegister = new Intent(this, Register.class);
+                startActivity(iRegister);
                 break;
-            case R.id.btnWelcomeLogin:
+            case R.id.btnLogin:
+                Intent iLogin = new Intent(this, Login.class);
+                startActivity(iLogin);
                 break;
             default:
                 break;

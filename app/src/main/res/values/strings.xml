@@ -1,6 +1,13 @@
 <resources>
     <string name="appName">Eat NOW</string>
-    <string name="txtWelcome">Welcome</string>
-    <string name="txtLogin">Login</string>
-    <string name="txtRegister">Register</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="submit">Submit</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="address">Address</string>
+    <string name="emailRecomendationDescription">Email of the person who recommend you (Optional)</string>
 </resources>
