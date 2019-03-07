@@ -10,4 +10,10 @@
     <string name="lastName">Last Name</string>
     <string name="address">Address</string>
     <string name="emailRecomendationDescription">Email of the person who recommend you (Optional)</string>
+
+    <!-- Home activity -->
+    <string name="order">Order</string>
+    <string name="history">History</string>
+    <string name="profile">Profile</string>
+
 </resources>

@@ -14,7 +14,6 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.NoActionBar);
         setContentView(R.layout.activity_welcome);
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
