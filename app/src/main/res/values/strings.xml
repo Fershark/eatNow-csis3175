@@ -16,4 +16,7 @@
     <string name="history">History</string>
     <string name="profile">Profile</string>
 
+    <!-- Register activity -->
+    <string name="confirmPassord">Confirm Password</string>
+
 </resources>
