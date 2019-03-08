@@ -31,6 +31,8 @@ public class Login extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("keyEmail", email);
                 editor.putString("keyPassword", password);
+                etEmail.setText("");
+                etPassword.setText("");
             }
         });
 
