@@ -19,4 +19,9 @@
     <!-- Register activity -->
     <string name="confirmPassord">Confirm Password</string>
 
+    <!--Order fragment -->
+    <string name="addressMessage">Enter an address:</string>
+    <string name="promotionMessage">Recommend a friend!\nGive your email to your friend and receive a 10% off in you next order</string>
+    <string name="search">Search</string>
+
 </resources>
