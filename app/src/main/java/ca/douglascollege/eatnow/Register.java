@@ -1,5 +1,6 @@
 package ca.douglascollege.eatnow;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import ca.douglascollege.eatnow.database.User;
+import ca.douglascollege.eatnow.database.UserRepository;
 
 public class Register extends AppCompatActivity {
 
@@ -20,8 +24,8 @@ public class Register extends AppCompatActivity {
         final EditText etEmail = findViewById(R.id.etEmail);
         final EditText etPassword = findViewById(R.id.etPassword);
         final EditText etConfirmPassword = findViewById(R.id.etConfirmPasword);
-        final EditText etName = findViewById(R.id.etFirstName);
-        final EditText etLastName = findViewById(R.id.etLastName);
+        final EditText etName = findViewById(R.id.etName);
+        final EditText etPhone = findViewById(R.id.etPhone);
         final EditText etAddress = findViewById(R.id.etAddress);
         final EditText etEmailRecommend = findViewById(R.id.etEmailRecommend);
 
@@ -36,19 +40,26 @@ public class Register extends AppCompatActivity {
                 boolean isPasswordOk = Validation.isValidPassword(etPassword);
                 boolean isConfirmPswdOk = Validation.isValidConfirmPassword(etPassword,etConfirmPassword);
                 boolean isNameOk = Validation.isValidName(etName);
-                boolean isLastNameOk = Validation.isValidName(etLastName);
+                boolean isPhoneOk = Validation.isValidPhone(etPhone);
                 boolean isAddressOk = Validation.isValidAddress(etAddress);
-                boolean isEmailRecOk = Validation.isValidEmail(etEmail);
+                //boolean isEmailRecOk = Validation.isValidEmail(etEmailRecommend);
 
-                if(isEmailOk && isPasswordOk && isConfirmPswdOk && isNameOk && isLastNameOk && isAddressOk && isEmailRecOk){
-                    Toast.makeText(Register.this, "OK!!!",Toast.LENGTH_LONG).show();
+                if(isEmailOk && isPasswordOk && isConfirmPswdOk && isNameOk && isPhoneOk && isAddressOk){
+
+                    User user = new User(etEmail.getText().toString(), etPhone.getText().toString(),
+                            etName.getText().toString(), etPassword.getText().toString());
+
+                    UserRepository userRepository = new UserRepository(Register.this);
+                    userRepository.insertUser(user);
+
+                    //Login
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Register.this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("email",etEmail.getText().toString());
-                    editor.putString("pswd",etPassword.getText().toString());
-                    editor.putString("name",etName.getText().toString());
-                    editor.putString("lastName",etLastName.getText().toString());
-                    editor.putString("address",etAddress.getText().toString());
-                    editor.putString("emailRec",etEmailRecommend.getText().toString());
+                    editor.putString("email", etEmail.toString());
+                    editor.commit();
+                    Intent i = new Intent(Register.this, Home.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
                 }
                 else{
                     Toast.makeText(Register.this, "Please correct errors",Toast.LENGTH_LONG).show();

@@ -73,7 +73,7 @@
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/etFirstName"
+        android:id="@+id/etName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -90,7 +90,7 @@
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -99,11 +99,11 @@
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
         android:ems="10"
-        android:hint="@string/lastName"
-        android:inputType="textPersonName"
+        android:hint="@string/phone"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/etName"
         tools:ignore="Autofill" />
 
     <EditText
@@ -120,7 +120,7 @@
         android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etLastName"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone"
         tools:ignore="Autofill" />
 
     <EditText

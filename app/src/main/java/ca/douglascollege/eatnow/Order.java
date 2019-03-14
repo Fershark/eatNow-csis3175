@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,9 @@ public class Order extends Fragment {
                     Toast.makeText(getActivity(),"Enter an Address",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    locationAddress += ", BC";
                     Geocoder geocoder = new Geocoder(Order.this.getContext(), Locale.getDefault());
                     try {
+                        locationAddress += ", BC";
                         List<Address> addressList = geocoder.getFromLocationName(locationAddress, 1);
                         if (addressList != null && addressList.size() > 0) {
                             Address address = addressList.get(0);
@@ -64,6 +65,7 @@ public class Order extends Fragment {
                             Toast.makeText(getActivity(),"Enter a valid Address",Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception ex) {
+                        Log.d("Geocoder", ex.getMessage());
                         Toast.makeText(getActivity(),"Error Geocoder",Toast.LENGTH_LONG).show();
                     }
                 }

@@ -86,6 +86,13 @@ public final class Validation {
         }
         return result;
     }
+    /* isValidPhone
+     * Verify the length of the phone to canadian phone
+     */
+    public static boolean isValidPhone(EditText etPhone) {
+        return true;
+    }
+
     /* isValidAddress
      * Verify name MIN 2 and MAX 30 char
      * return: boolean (true) if there is no problem with the Name

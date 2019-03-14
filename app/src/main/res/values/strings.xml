@@ -8,6 +8,7 @@
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="lastName">Last Name</string>
+    <string name="phone">Phone</string>
     <string name="address">Address</string>
     <string name="emailRecomendationDescription">Email of the person who recommend you (Optional)</string>
 
