@@ -36,15 +36,15 @@ public class Register extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isEmailOk = Validation.isValidEmail(etEmail);
+                boolean isEmailOk = Validation.isValidEmail(etEmail, Register.this);
                 boolean isPasswordOk = Validation.isValidPassword(etPassword);
                 boolean isConfirmPswdOk = Validation.isValidConfirmPassword(etPassword,etConfirmPassword);
                 boolean isNameOk = Validation.isValidName(etName);
                 boolean isPhoneOk = Validation.isValidPhone(etPhone);
-                boolean isAddressOk = Validation.isValidAddress(etAddress);
-                //boolean isEmailRecOk = Validation.isValidEmail(etEmailRecommend);
+                boolean isAddressOk = Validation.isValidAddress(etAddress, Register.this);
+                boolean isEmailRecOk = Validation.isValidRecommendEmail(etEmailRecommend, Register.this);
 
-                if(isEmailOk && isPasswordOk && isConfirmPswdOk && isNameOk && isPhoneOk && isAddressOk){
+                if(isEmailOk && isPasswordOk && isConfirmPswdOk && isNameOk && isPhoneOk && isAddressOk && isEmailRecOk){
 
                     User user = new User(etEmail.getText().toString(), etPhone.getText().toString(),
                             etName.getText().toString(), etPassword.getText().toString());
@@ -57,6 +57,7 @@ public class Register extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("email", etEmail.toString());
                     editor.commit();
+
                     Intent i = new Intent(Register.this, Home.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
