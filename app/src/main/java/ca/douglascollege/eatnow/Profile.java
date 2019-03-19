@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +41,18 @@ public class Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("PROFILE", "....STARTING PROFILE....");
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Log.d("PROFILE", "....POPULATING HASH MAP....");
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
         for(int x=0;x<imagesProfile.length;x++)
         {
@@ -51,13 +62,25 @@ public class Profile extends Fragment {
             aList.add(hm);
         }
 
+        Log.d("PROFILE", "....CREATING ADAPTER....");
         String [] from = {"images", "text"};
         int [] to = {R.id.profileImage, R.id.textProfile};
-        SimpleAdapter adapter =  new SimpleAdapter(getContext(), aList, R.layout.profile_layout_view, from, to);
+        SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.profile_layout_view, from, to);
 
-        ListView listView = view.findViewById(R.id.profile_layout);
+        if(adapter==null){
+            Toast.makeText(Profile.this.getContext(),"ADAPTER NULL", Toast.LENGTH_LONG).show();
+            Log.e("PROFILE", "ADAPTER NULL");
+        }
+
+        Log.d("PROFILE", "....GETTING LIST VIEW....");
+        ListView listView = (ListView) view.findViewById(R.id.profile_layout);
+        if(listView==null){
+            Toast.makeText(Profile.this.getContext(),"List NULL", Toast.LENGTH_LONG).show();
+            Log.e("PROFILE", "LIST VIEW profile_layout NULL");
+        }
         listView.setAdapter(adapter);
 
+        Log.d("PROFILE", "....ADDING ACTIONS....");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,6 +96,6 @@ public class Profile extends Fragment {
                 }
             }
         });
-        return view;
+        Log.d("PROFILE", "....RETURNING VIEW....");
     }
 }
