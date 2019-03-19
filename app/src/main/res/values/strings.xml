@@ -28,4 +28,8 @@
     <!-- Profile -->
     <string name="anImage">an Image</string>
 
+    <!--Restaurants activity-->
+    <string name="restImgDesc">Restaurant Logo</string>
+
+
 </resources>
