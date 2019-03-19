@@ -31,7 +31,7 @@ public class Restaurants extends AppCompatActivity {
         Log.d(TAG, "Initializing restaurants..");
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         for(int i =0; i<SIZE;i++){
-            restaurants.add(new Restaurant(R.drawable.restaurant_image,"Restaurant"+i, (1000+i) + "m"));
+            restaurants.add(new Restaurant(R.drawable.restaurant_image,"Restaurant"+i, "Meat and More", (1000+i) + "m"));
         }
 
         Log.d(TAG, "Creating Adapter..");

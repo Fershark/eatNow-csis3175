@@ -28,19 +28,22 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, View convertView, ViewGroup parent) {
         int imageId = getItem(position).getImageId();
         String name = getItem(position).getName();
+        String type = getItem(position).getType();
         String distance = getItem(position).getDistance();
 
-        Restaurant restaurant = new Restaurant(imageId,name,distance);
+        Restaurant restaurant = new Restaurant(imageId,name,type, distance);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent,false);
 
         ImageView imageView = convertView.findViewById(R.id.imageView1);
         TextView tvName = convertView.findViewById(R.id.tvName);
+        TextView tvType = convertView.findViewById(R.id.tvType);
         TextView tvDistance = convertView.findViewById(R.id.tvDistance);
 
         imageView.setImageResource(imageId);
         tvName.setText(name);
+        tvType.setText(type);
         tvDistance.setText(distance);
 
         return convertView;
