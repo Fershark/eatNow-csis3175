@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Home extends AppCompatActivity {
 
     /**
@@ -32,20 +35,34 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Set the image in the toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
+        mSectionsPagerAdapter.addFrag(Order.newInstance(), getString(R.string.order));
+        mSectionsPagerAdapter.addFrag(History.newInstance(), getString(R.string.history));
+        mSectionsPagerAdapter.addFrag(Profile.newInstance(), getString(R.string.profile));
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        // Set up the icons
+        TabLayout.Tab tabCallOrder = tabLayout.getTabAt(0);
+        TabLayout.Tab tabCallHistory = tabLayout.getTabAt(1);
+        TabLayout.Tab tabCallProfile = tabLayout.getTabAt(2);
+
+        tabCallOrder.setIcon(R.drawable.selector_order_tab);
+        tabCallHistory.setIcon(R.drawable.selector_history_tab);
+        tabCallProfile.setIcon(R.drawable.selector_profile_tab);
     }
 
     /**
@@ -53,33 +70,31 @@ public class Home extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
         @Override
         public Fragment getItem(int position) {
-            Fragment mFragment = null;
-            switch (position) {
-                case 0:
-                    mFragment = Order.newInstance();
-                    break;
-                case 1:
-                    mFragment = History.newInstance();
-                    break;
-                case 2:
-                    mFragment = Profile.newInstance();
-                    break;
-
-            }
-            return mFragment;
+            return mFragmentList.get(position);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return mFragmentTitleList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
         }
     }
 }

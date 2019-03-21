@@ -205,6 +205,7 @@ public class Validation {
 
     /**
      * Verify the length of the phone to canadian phone
+     *
      * @param tiPhone The text input layour surronding the edit text
      * @param etPhone The edit text of the phone
      * @return true if there is no problem with the phone edit text
@@ -228,6 +229,7 @@ public class Validation {
 
     /**
      * Verify the address is valid address with google geocoder
+     *
      * @param tiAddress The text input layout surronding the text edit
      * @param etAddress The text edit of the address
      * @return True if there is no error in the address field
