@@ -10,7 +10,11 @@
     <string name="lastName">Last Name</string>
     <string name="phone">Phone</string>
     <string name="address">Address</string>
-    <string name="emailRecommendationDescription">Email of the person who recommended you (Optional)</string>
+    <string name="emailRecommendationDescription">Recommendation email</string>
+    <string name="receivePromotion">Enter the mail of an existing user and receive and give 10% off in your next order</string>
+
+    <!-- Login activity -->
+    <string name="incorrectPassword">Incorrect password</string>
 
     <!-- Home activity -->
     <string name="order">Order</string>
@@ -31,5 +35,16 @@
     <!--Restaurants activity-->
     <string name="restImgDesc">Restaurant Logo</string>
 
+    <!-- Validation -->
+    <string name="required">This field is required</string>
+    <string name="invalid">This field is invalid</string>
+    <string name="emailExist">This email was previously signed up</string>
+    <string name="emailNotExist">This email is not signed up</string>
+    <string name="minLength">This field must be at least %1$s chars</string>
+    <string name="maxLength">This field can\'t be longer than %1$s chars</string>
+    <string name="specificLength">This field must be %1$s chars</string>
+    <string name="confirmPasswordNotMatch">Confirm password doesn\'t match password</string>
+    <string name="onlyNumbers">This field only accept numbers</string>
+    <string name="checkInternet">Check your internet connection</string>
 
 </resources>
