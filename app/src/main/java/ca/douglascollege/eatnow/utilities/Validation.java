@@ -235,25 +235,36 @@ public class Validation {
      * @return True if there is no error in the address field
      */
     public boolean isValidAddress(TextInputLayout tiAddress, EditText etAddress) {
-        String address = etAddress.getText().toString().trim();
-        boolean result = false;
+        return (validAddress(tiAddress, etAddress) != null);
+    }
 
-        if (address.length() == 0)
+    /**
+     * Verify the address is valid address with google geocoder
+     *
+     * @param tiAddress The text input layout surronding the text edit
+     * @param etAddress The text edit of the address
+     * @return The address if there is no error in the address field
+     */
+    public Address validAddress(TextInputLayout tiAddress, EditText etAddress) {
+        String addressString = etAddress.getText().toString().trim();
+        Address address = null;
+
+        if (addressString.length() == 0)
             tiAddress.setError(c.getString(R.string.required));
-        else if (address.length() < ADDRESS_MIN_SIZE)
+        else if (addressString.length() < ADDRESS_MIN_SIZE)
             tiAddress.setError(c.getString(R.string.minLength, Integer.toString(ADDRESS_MIN_SIZE)));
-        else if (address.length() > ADDRESS_MAX_SIZE)
+        else if (addressString.length() > ADDRESS_MAX_SIZE)
             tiAddress.setError(c.getString(R.string.maxLength, Integer.toString(ADDRESS_MAX_SIZE)));
         else {
             Geocoder geocoder = new Geocoder(c, Locale.getDefault());
-            address += ", BC";
+            addressString += ", BC";
             try {
-                List<Address> addressList = geocoder.getFromLocationName(address, 1);
+                List<Address> addressList = geocoder.getFromLocationName(addressString, 1);
                 if (addressList == null || addressList.size() == 0)
                     tiAddress.setError(c.getString(R.string.invalid));
                 else {
-                    result = true;
                     tiAddress.setError(null);
+                    address = addressList.get(0);
                 }
             } catch (Exception ex) {
                 Log.d(TAG, ex.getMessage());
@@ -261,7 +272,7 @@ public class Validation {
             }
         }
 
-        return result;
+        return address;
     }
 
 }
