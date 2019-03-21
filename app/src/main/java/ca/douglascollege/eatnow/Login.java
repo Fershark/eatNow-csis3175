@@ -4,17 +4,13 @@ import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Date;
-import java.util.List;
 
 import ca.douglascollege.eatnow.database.User;
 import ca.douglascollege.eatnow.database.UserRepository;
@@ -22,14 +18,18 @@ import ca.douglascollege.eatnow.database.UserRepository;
 public class Login extends AppCompatActivity {
 
     String email, password;
+    TextInputLayout tiEmail, tiPassword;
+    EditText etEmail, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText etEmail = findViewById(R.id.etEmail);
-        final EditText etPassword = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        tiEmail = findViewById(R.id.tiEmail);
+        tiPassword = findViewById(R.id.tiPassword);
         Button btnSubmit = findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -38,13 +38,17 @@ public class Login extends AppCompatActivity {
                 email = etEmail.getText().toString();
                 password = etPassword.getText().toString();
 
-                if (email.length() <= 0) {
-                    Toast.makeText(Login.this,"Enter an email",Toast.LENGTH_LONG).show();
-                }
-                else if (password.length() <= 0) {
-                    Toast.makeText(Login.this,"Enter a password",Toast.LENGTH_LONG).show();
-                }
-                else {
+                //TODO: Change it to validation
+                if (email.length() <= 0)
+                    tiEmail.setError("Enter an email");
+                else
+                    tiEmail.setError(null);
+                if (password.length() <= 0)
+                    tiPassword.setError("Enter an password");
+                else
+                    tiPassword.setError(null);
+
+                if(email.length() > 0 && password.length() > 0) {
                     UserRepository userRepository = new UserRepository(Login.this);
                     try {
                         User user = userRepository.getUserByEmail(email);
@@ -57,11 +61,12 @@ public class Login extends AppCompatActivity {
                                 Intent i = new Intent(Login.this, Home.class);
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
+                                finish();
                             } else {
-                                Toast.makeText(Login.this, "Incorrect password", Toast.LENGTH_LONG).show();
+                                tiPassword.setError("Incorrect password");
                             }
                         } else {
-                            Toast.makeText(Login.this, "That user does not exist", Toast.LENGTH_LONG).show();
+                            tiEmail.setError("That user does not exist");
                         }
                     } catch (Exception e) {
                         Log.d("Login", e.getMessage());
