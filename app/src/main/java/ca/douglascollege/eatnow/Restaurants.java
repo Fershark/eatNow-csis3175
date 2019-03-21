@@ -1,6 +1,7 @@
 package ca.douglascollege.eatnow;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,17 +26,22 @@ public class Restaurants extends AppCompatActivity {
         }
         Log.d(TAG, "Lat/Long : " + latitude+" "+longitude);
 
+        Location userLocation = new Location("user");
+        userLocation.setLatitude(latitude);
+        userLocation.setLongitude(longitude);
+
         Log.d(TAG, "Starting creation..");
         ListView listView = findViewById(R.id.listViewRestaurant);
 
         Log.d(TAG, "Initializing restaurants..");
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
         for(int i =0; i<SIZE;i++){
-            restaurants.add(new Restaurant(R.drawable.restaurant_image,"Restaurant"+i, "Meat and More", (1000+i) + "m"));
+            //49.203512, -122.912552
+            restaurants.add(new Restaurant(R.drawable.restaurant_image,"Restaurant"+i, "Meat and More", 49.203512, -122.912552));
         }
 
         Log.d(TAG, "Creating Adapter..");
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, R.layout.adapter_view_layout, restaurants);
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, R.layout.adapter_view_layout, restaurants, userLocation);
         listView.setAdapter(restaurantAdapter);
     }
 }
