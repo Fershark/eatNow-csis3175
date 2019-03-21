@@ -25,7 +25,7 @@ public class Validation {
     public final int PHONE_SIZE = 10;
     public final int ADDRESS_MIN_SIZE = 5;
     public final int ADDRESS_MAX_SIZE = 100;
-    public final String LOG_STRING = "VALIDATION";
+    public final String TAG = "VALIDATION";
 
     public Validation(Context c) {
         this.c = c;
@@ -82,7 +82,7 @@ public class Validation {
             } catch (Exception e) {
                 tiEmail.setError("Exception");
                 result = false;
-                Log.d(LOG_STRING, e.getMessage());
+                Log.d(TAG, e.getMessage());
             }
         }
 
@@ -122,7 +122,7 @@ public class Validation {
                     tiEmail.setError(null);
             } catch (Exception e) {
                 tiEmail.setError("Exception");
-                Log.d(LOG_STRING, e.getMessage());
+                Log.d(TAG, e.getMessage());
             }
         }
 
@@ -254,7 +254,7 @@ public class Validation {
                     tiAddress.setError(null);
                 }
             } catch (Exception ex) {
-                Log.d(LOG_STRING, ex.getMessage());
+                Log.d(TAG, ex.getMessage());
                 tiAddress.setError(c.getString(R.string.checkInternet));
             }
         }
