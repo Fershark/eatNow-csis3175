@@ -1,4 +1,4 @@
-package ca.douglascollege.eatnow;
+package ca.douglascollege.eatnow.utilities;
 
 import android.content.Context;
 import android.content.Intent;

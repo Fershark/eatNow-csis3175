@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import ca.douglascollege.eatnow.database.User;
 import ca.douglascollege.eatnow.database.UserRepository;
+import ca.douglascollege.eatnow.utilities.Validation;
 
 public class Register extends AppCompatActivity {
 

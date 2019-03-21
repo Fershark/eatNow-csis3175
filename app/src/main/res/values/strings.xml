@@ -1,8 +1,8 @@
 <resources>
     <string name="appName">Eat NOW</string>
     <string name="welcome">Welcome</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="logIn">Log in</string>
+    <string name="signUp">Sign Up</string>
     <string name="submit">Submit</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
