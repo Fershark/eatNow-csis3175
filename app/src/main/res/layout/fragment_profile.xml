@@ -7,17 +7,8 @@
     android:orientation="vertical"
     tools:context=".Profile">
 
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:contentDescription="@string/anImage" />
-
-    <TextView
-        android:id="@+id/textProfile"
+    <ListView
+        android:id="@+id/listView_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent" />
 </LinearLayout>

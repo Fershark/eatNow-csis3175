@@ -1,5 +1,6 @@
 package ca.douglascollege.eatnow;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
@@ -36,52 +37,34 @@ public class Profile extends Fragment {
     }
 
     String [] profileString = {"Edit Profile", "Log Out"};
-    int [] imagesProfile = new int[] {R.drawable.edit_profile, R.drawable.log_out};
+    int [] imagesProfile = new int[] {R.drawable.icon_account, R.drawable.icon_power};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("PROFILE", "....STARTING PROFILE....");
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        Log.d("PROFILE", "....POPULATING HASH MAP....");
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
         for(int x=0;x<imagesProfile.length;x++)
         {
             HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("txt", profileString[x]);
+            hm.put("text", profileString[x]);
             hm.put("images", Integer.toString(imagesProfile[x]));
             aList.add(hm);
         }
 
-        Log.d("PROFILE", "....CREATING ADAPTER....");
         String [] from = {"images", "text"};
-        int [] to = {R.id.profileImage, R.id.textProfile};
-        SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.profile_layout_view, from, to);
+        int [] to = {R.id.imageView_profile, R.id.textView_profile};
+        SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.profile_layout, from, to);
 
         if(adapter==null){
             Toast.makeText(Profile.this.getContext(),"ADAPTER NULL", Toast.LENGTH_LONG).show();
-            Log.e("PROFILE", "ADAPTER NULL");
         }
-
-        Log.d("PROFILE", "....GETTING LIST VIEW....");
-        ListView listView = (ListView) view.findViewById(R.id.profile_layout);
-        if(listView==null){
+        ListView lv = (ListView) view.findViewById(R.id.listView_profile);
+        if(lv==null){
             Toast.makeText(Profile.this.getContext(),"List NULL", Toast.LENGTH_LONG).show();
-            Log.e("PROFILE", "LIST VIEW profile_layout NULL");
         }
-        listView.setAdapter(adapter);
-
-        Log.d("PROFILE", "....ADDING ACTIONS....");
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position)
@@ -91,11 +74,11 @@ public class Profile extends Fragment {
                         break;
 
                     case 1:
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.sfu.ca/")));
+                        startActivity(new Intent(getActivity(), Login.class));
                         break;
                 }
             }
         });
-        Log.d("PROFILE", "....RETURNING VIEW....");
+        return view;
     }
 }
