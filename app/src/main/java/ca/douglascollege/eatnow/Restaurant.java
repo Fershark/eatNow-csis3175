@@ -4,13 +4,15 @@ public class Restaurant {
     private int imageId;
     private String name;
     private String type;
-    private String distance;
+    private Double latitude;
+    private Double longitude;
 
-    public Restaurant(int imageId, String name, String type, String distance) {
+    public Restaurant(int imageId, String name, String type, Double latitude, Double longitude) {
         this.imageId = imageId;
         this.name = name;
         this.type = type;
-        this.distance = distance;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getImageId() {
@@ -27,13 +29,15 @@ public class Restaurant {
 
     public void setName(String name) {        this.name = name;    }
 
-    public String getDistance() {
-        return distance;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
+    public void setLatitude(Double latitude) {     this.latitude = latitude;}
+
+    public Double getLongitude() {        return longitude;    }
+
+    public void setLongitude(Double longitude) {        this.longitude = longitude;    }
 
     public String getType() {       return type;    }
 
