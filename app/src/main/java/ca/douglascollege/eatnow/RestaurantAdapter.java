@@ -1,7 +1,6 @@
 package ca.douglascollege.eatnow;
 
 import android.content.Context;
-import android.location.Geocoder;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -12,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.zip.Inflater;
+
+import ca.douglascollege.eatnow.database.Restaurant;
 
 class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     private static final String TAG = "RestaurantAdapter";
@@ -36,6 +35,7 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
         int imageId = getItem(position).getImageId();
         String name = getItem(position).getName();
+        String phone = getItem(position).getPhone();
         String type = getItem(position).getType();
         Double lat = getItem(position).getLatitude();
         Double lng = getItem(position).getLongitude();
@@ -48,10 +48,10 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         locationB.setLongitude(mUserLocation.getLongitude());
         float distance = locationA.distanceTo(locationB);
 
-        String strDistance = String.format("%.2f",distance);
+        String strDistance = String.format("%.2f m",distance);
 
 
-        Restaurant restaurant = new Restaurant(imageId,name,type, lat, lng);
+        Restaurant restaurant = new Restaurant(imageId,phone,name,type, lat, lng);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent,false);

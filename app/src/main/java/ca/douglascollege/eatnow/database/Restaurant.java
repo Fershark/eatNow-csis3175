@@ -1,18 +1,39 @@
-package ca.douglascollege.eatnow;
+package ca.douglascollege.eatnow.database;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Entity
 public class Restaurant {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private int imageId;
+    private String phone;
     private String name;
     private String type;
     private Double latitude;
     private Double longitude;
 
-    public Restaurant(int imageId, String name, String type, Double latitude, Double longitude) {
+    public Restaurant(int imageId, String phone, String name, String type, Double latitude, Double longitude) {
         this.imageId = imageId;
         this.name = name;
+        this.phone = phone;
         this.type = type;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getImageId() {
@@ -42,4 +63,8 @@ public class Restaurant {
     public String getType() {       return type;    }
 
     public void setType(String type) {        this.type = type;    }
+
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone;  }
 }
