@@ -2,7 +2,9 @@ package ca.douglascollege.eatnow;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -74,7 +76,9 @@ public class Profile extends Fragment {
                         break;
 
                     case 1:
-                        startActivity(new Intent(getActivity(), Login.class));
+                        SharedPreferences preferences = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+                        preferences.edit().clear().commit();
+                        startActivity(new Intent(getActivity(), Welcome.class));
                         break;
                 }
             }
