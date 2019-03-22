@@ -47,6 +47,8 @@ public class Order extends Fragment {
         etAddress = v.findViewById(R.id.etAddress);
         tiAddress = v.findViewById(R.id.tiAddress);
 
+        validation = new Validation(v.getContext());
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
