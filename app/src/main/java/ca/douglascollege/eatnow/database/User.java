@@ -19,7 +19,7 @@ public class User implements Serializable {
     @ColumnInfo(name = "created_at")
     private Date createdAt;
 
-    public User(int id, String email, String phone, String name, String password, Date createdAt){
+    public User(int id, String email, String phone, String name, String password, Date createdAt) {
         this.id = id;
         this.email = email;
         this.phone = phone;

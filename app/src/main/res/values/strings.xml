@@ -24,7 +24,7 @@
     <!-- Register activity -->
     <string name="confirmPassword">Confirm Password</string>
 
-    <!-- Order fragment -->
+    <!-- SearchRestaurant fragment -->
     <string name="addressMessage">Enter an address</string>
     <string name="promotionMessage">Recommend a friend!\nGive your email to your friend and receive a 10% off in you next order</string>
     <string name="search">Search</string>
@@ -34,6 +34,7 @@
 
     <!--Restaurants activity-->
     <string name="restImgDesc">Restaurant Logo</string>
+    <string name="distanceFormat">%1$s m</string>
 
     <!-- Validation -->
     <string name="required">This field is required</string>

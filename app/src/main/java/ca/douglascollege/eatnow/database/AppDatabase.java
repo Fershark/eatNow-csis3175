@@ -14,7 +14,7 @@ import java.util.Date;
 
 import ca.douglascollege.eatnow.R;
 
-@Database(entities = {User.class, Restaurant.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class}, version = 3, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -75,7 +75,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     /**
-     * getRestaurants
+     * Initialize the restaurants in the app
      *
      * @return List of 10 restaurants to insert into the Table
      */

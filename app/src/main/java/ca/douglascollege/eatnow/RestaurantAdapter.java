@@ -1,7 +1,6 @@
 package ca.douglascollege.eatnow;
 
 import android.content.Context;
-import android.location.Location;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,51 +9,40 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ca.douglascollege.eatnow.database.Restaurant;
 
 class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-    private static final String TAG = "RestaurantAdapter";
     private Context mContext;
-    private  int mResource;
-    private Location mUserLocation;
+    private int mResource;
 
-    public RestaurantAdapter(Context context, int resource, ArrayList<Restaurant> objects, Location userLocation) {
-        super(context, resource, objects);
+    public RestaurantAdapter(Context context) {
+        super(context, R.layout.adapter_view_layout);
         mContext = context;
-        mResource = resource;
-        mUserLocation = userLocation;
+        mResource = R.layout.adapter_view_layout;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        addAll(restaurants);
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Location locationA = new Location("point A");
-        Location locationB = new Location("point B");
+        Restaurant restaurant = getItem(position);
 
-        int imageId = getItem(position).getImageId();
-        String name = getItem(position).getName();
-        String phone = getItem(position).getPhone();
-        String type = getItem(position).getType();
-        Double lat = getItem(position).getLatitude();
-        Double lng = getItem(position).getLongitude();
-
-
-        locationA.setLatitude(lat);
-        locationA.setLongitude(lng);
-
-        locationB.setLatitude(mUserLocation.getLatitude());
-        locationB.setLongitude(mUserLocation.getLongitude());
-        float distance = locationA.distanceTo(locationB);
-
-        String strDistance = String.format("%.2f m",distance);
-
-
-        Restaurant restaurant = new Restaurant(imageId,phone,name,type, lat, lng);
+        int imageId = restaurant.getImageId();
+        String name = restaurant.getName();
+        String phone = restaurant.getPhone();
+        String type = restaurant.getType();
+        double lat = restaurant.getLatitude();
+        double lng = restaurant.getLongitude();
+        int distance = restaurant.getDistanceFromUser();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent,false);
+        convertView = inflater.inflate(mResource, parent, false);
 
         ImageView imageView = convertView.findViewById(R.id.imageView1);
         TextView tvName = convertView.findViewById(R.id.tvName);
@@ -64,7 +52,7 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         imageView.setImageResource(imageId);
         tvName.setText(name);
         tvType.setText(type);
-        tvDistance.setText(strDistance);
+        tvDistance.setText(mContext.getString(R.string.distanceFormat, Integer.toString(distance)));
 
         return convertView;
     }

@@ -18,8 +18,8 @@ public class RestaurantRepository {
     private AppDatabase appDatabase;
     private String TAG = "RESTAURANT_REPOSITORY";
 
-    public RestaurantRepository(Application application) {
-        appDatabase = AppDatabase.getInstance(application);
+    public RestaurantRepository(Context c) {
+        appDatabase = AppDatabase.getInstance(c);
     }
 
     public void insertRestaurant(final Restaurant restaurant) {
