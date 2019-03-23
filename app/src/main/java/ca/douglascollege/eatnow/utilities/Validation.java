@@ -70,19 +70,13 @@ public class Validation {
 
         if (result) {
             String email = etEmail.getText().toString().trim();
-            UserRepository userRepository = new UserRepository(c);
-            try {
-                if (userRepository.getUserByEmail(email) != null) {
-                    tiEmail.setError(c.getString(R.string.emailExist));
-                    result = false;
-                } else {
-                    tiEmail.setError(null);
-                    result = true;
-                }
-            } catch (Exception e) {
-                tiEmail.setError("Exception");
+            UserRepository userRepository = new UserRepository(c.getApplicationContext());
+            if (userRepository.getUserByEmail(email) != null) {
+                tiEmail.setError(c.getString(R.string.emailExist));
                 result = false;
-                Log.d(TAG, e.getMessage());
+            } else {
+                tiEmail.setError(null);
+                result = true;
             }
         }
 
@@ -113,17 +107,12 @@ public class Validation {
 
         if (result) {
             String email = etEmail.getText().toString().trim();
-            UserRepository userRepository = new UserRepository(c);
-            try {
-                user = userRepository.getUserByEmail(email);
-                if (user == null)
-                    tiEmail.setError(c.getString(R.string.emailNotExist));
-                else
-                    tiEmail.setError(null);
-            } catch (Exception e) {
-                tiEmail.setError("Exception");
-                Log.d(TAG, e.getMessage());
-            }
+            UserRepository userRepository = new UserRepository(c.getApplicationContext());
+            user = userRepository.getUserByEmail(email);
+            if (user == null)
+                tiEmail.setError(c.getString(R.string.emailNotExist));
+            else
+                tiEmail.setError(null);
         }
 
         return user;

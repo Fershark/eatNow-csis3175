@@ -63,7 +63,7 @@ public class Register extends AppCompatActivity {
                     User user = new User(etEmail.getText().toString(), etPhone.getText().toString(),
                             etName.getText().toString(), etPassword.getText().toString());
 
-                    UserRepository userRepository = new UserRepository(Register.this);
+                    UserRepository userRepository = new UserRepository(Register.this.getApplicationContext());
                     userRepository.insertUser(user);
 
                     if(recommendationEmailEntered) {

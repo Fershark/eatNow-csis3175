@@ -3,6 +3,7 @@ package ca.douglascollege.eatnow.database;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -12,12 +13,13 @@ import java.util.concurrent.Future;
 
 public class UserRepository {
     private AppDatabase appDatabase;
+    private String TAG = "USER_REPOSITORY";
 
-    public UserRepository(Context context){
+    public UserRepository(Context context) {
         appDatabase = AppDatabase.getInstance(context);
     }
 
-    public void insertUser(final User user){
+    public void insertUser(final User user) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -31,7 +33,9 @@ public class UserRepository {
         return appDatabase.userDao().getUsers();
     }
 
-    public User getUserByEmail(final String email) throws ExecutionException, InterruptedException {
+    public User getUserByEmail(final String email) {
+        User user = null;
+
         Callable<User> callable = new Callable<User>() {
             @Override
             public User call() throws Exception {
@@ -40,7 +44,12 @@ public class UserRepository {
         };
 
         Future<User> future = Executors.newSingleThreadExecutor().submit(callable);
+        try {
+            user = future.get();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
 
-        return future.get();
+        return user;
     }
 }
