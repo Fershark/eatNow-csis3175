@@ -1,4 +1,4 @@
-package ca.douglascollege.eatnow.database;
+package ca.douglascollege.eatnow.database.restaurant;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;

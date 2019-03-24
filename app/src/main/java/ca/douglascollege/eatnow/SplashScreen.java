@@ -6,8 +6,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import ca.douglascollege.eatnow.database.AppDatabase;
-import ca.douglascollege.eatnow.database.UserRepository;
+import ca.douglascollege.eatnow.database.user.UserRepository;
 
 public class SplashScreen extends AppCompatActivity {
 

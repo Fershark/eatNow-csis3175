@@ -1,4 +1,4 @@
-package ca.douglascollege.eatnow.database;
+package ca.douglascollege.eatnow.database.user;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
@@ -7,9 +7,10 @@ import android.util.Log;
 
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import ca.douglascollege.eatnow.database.AppDatabase;
 
 public class UserRepository {
     private AppDatabase appDatabase;

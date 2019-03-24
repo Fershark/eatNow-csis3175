@@ -13,8 +13,8 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 import ca.douglascollege.eatnow.R;
-import ca.douglascollege.eatnow.database.User;
-import ca.douglascollege.eatnow.database.UserRepository;
+import ca.douglascollege.eatnow.database.user.User;
+import ca.douglascollege.eatnow.database.user.UserRepository;
 
 public class Validation {
     private Context c;

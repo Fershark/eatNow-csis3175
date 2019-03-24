@@ -1,4 +1,4 @@
-package ca.douglascollege.eatnow.database;
+package ca.douglascollege.eatnow.database.user;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

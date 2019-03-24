@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import ca.douglascollege.eatnow.database.User;
-import ca.douglascollege.eatnow.database.UserRepository;
+import ca.douglascollege.eatnow.database.user.User;
+import ca.douglascollege.eatnow.database.user.UserRepository;
 import ca.douglascollege.eatnow.utilities.Validation;
 
 public class Register extends AppCompatActivity {

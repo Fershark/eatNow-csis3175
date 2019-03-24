@@ -12,7 +12,14 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Date;
 
-@Database(entities = {User.class, Restaurant.class}, version = 4, exportSchema = false)
+import ca.douglascollege.eatnow.database.product.Product;
+import ca.douglascollege.eatnow.database.product.ProductDao;
+import ca.douglascollege.eatnow.database.restaurant.Restaurant;
+import ca.douglascollege.eatnow.database.restaurant.RestaurantDao;
+import ca.douglascollege.eatnow.database.user.User;
+import ca.douglascollege.eatnow.database.user.UserDao;
+
+@Database(entities = {User.class, Restaurant.class, Product.class}, version = 5, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -20,8 +27,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static String FIRST_EMAIL = "client@gmail.com";
 
     public abstract UserDao userDao();
-
     public abstract RestaurantDao restaurantDao();
+    public abstract ProductDao productDao();
 
     public static AppDatabase getInstance(final Context context) {
         if (INSTANCE == null) {
@@ -56,6 +63,7 @@ public abstract class AppDatabase extends RoomDatabase {
             if (userDao.getUserByEmail(FIRST_EMAIL) == null) {
                 getInstance(c).userDao().insertAll(defaultUsers());
                 getInstance(c).restaurantDao().insertAll(getRestaurants());
+                getInstance(c).productDao().insertAll(getProducts());
             }
             return null;
         }
@@ -93,4 +101,15 @@ public abstract class AppDatabase extends RoomDatabase {
         return restaurants;
     }
 
+    /**
+     * Initialize the products in the app
+     *
+     * @return the list of Products
+     */
+    private static ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Test product", "restaurant_image", "test description", (float) 11.1, 1));
+        products.add(new Product("Test product 2", "restaurant_image", "test description 2", (float) 11.1, 10));
+        return products;
+    }
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import ca.douglascollege.eatnow.database.Restaurant;
+import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 
 class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     private Context mContext;

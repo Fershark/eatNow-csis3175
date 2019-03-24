@@ -1,18 +1,17 @@
 //public class RestaurantRepository {
-package ca.douglascollege.eatnow.database;
+package ca.douglascollege.eatnow.database.restaurant;
 
-import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import ca.douglascollege.eatnow.database.AppDatabase;
 
 public class RestaurantRepository {
     private AppDatabase appDatabase;

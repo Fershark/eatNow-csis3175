@@ -14,8 +14,8 @@ import android.widget.ListView;
 import java.util.Collections;
 import java.util.List;
 
-import ca.douglascollege.eatnow.database.Restaurant;
-import ca.douglascollege.eatnow.database.RestaurantRepository;
+import ca.douglascollege.eatnow.database.restaurant.Restaurant;
+import ca.douglascollege.eatnow.database.restaurant.RestaurantRepository;
 
 public class Restaurants extends AppCompatActivity {
     private final String TAG = "RESTAURANTS_ACTIVITY";
@@ -66,7 +66,7 @@ public class Restaurants extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant restaurant = (Restaurant) parent.getAdapter().getItem(position);
-                Intent i = new Intent(Restaurants.this, RestaurantMenu.class);
+                Intent i = new Intent(Restaurants.this, Products.class);
                 i.putExtra("restaurant", restaurant);
                 startActivity(i);
             }
