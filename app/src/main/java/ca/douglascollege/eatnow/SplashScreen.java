@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import ca.douglascollege.eatnow.database.user.UserRepository;
+import ca.douglascollege.eatnow.utilities.Helper;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -20,11 +21,10 @@ public class SplashScreen extends AppCompatActivity {
         new UserRepository(getApplicationContext()).getUserByEmail(" ");
 
         //Check if a user is logged
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String email = sharedPreferences.getString("email","");
+        Helper helper = new Helper(this);
 
         Intent i;
-        if(!email.equals(""))
+        if(helper.getEmailLoggedUser() != null)
             i = new Intent(this, Home.class);
         else
             i = new Intent(this, Welcome.class);

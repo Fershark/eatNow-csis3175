@@ -2,7 +2,6 @@ package ca.douglascollege.eatnow.database.user;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -16,25 +15,17 @@ public class User implements Serializable {
     private String phone;
     private String name;
     private String password;
+    private String address;
     @ColumnInfo(name = "created_at")
     private Date createdAt;
 
-    public User(int id, String email, String phone, String name, String password, Date createdAt) {
-        this.id = id;
+    public User(String email, String phone, String name, String password, String address, Date createdAt) {
         this.email = email;
         this.phone = phone;
         this.name = name;
         this.password = password;
+        this.address = address;
         this.createdAt = createdAt;
-    }
-
-    @Ignore
-    public User(String email, String phone, String name, String password) {
-        this.email = email;
-        this.phone = phone;
-        this.name = name;
-        this.password = password;
-        this.createdAt = new Date();
     }
 
     public int getId() {
@@ -83,5 +74,13 @@ public class User implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

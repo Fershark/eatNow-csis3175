@@ -1,8 +1,6 @@
 package ca.douglascollege.eatnow;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import ca.douglascollege.eatnow.database.user.User;
+import ca.douglascollege.eatnow.utilities.Helper;
 import ca.douglascollege.eatnow.utilities.Validation;
 
 public class Login extends AppCompatActivity {
@@ -42,10 +41,8 @@ public class Login extends AppCompatActivity {
                     String email = etEmail.getText().toString();
 
                     if (user.getPassword().equals(password) && user.getEmail().equals(email)) {
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", email);
-                        editor.commit();
+                        Helper helper = new Helper(Login.this);
+                        helper.setEmailLoggedUser(email);
                         Intent i = new Intent(Login.this.getApplicationContext(), Home.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);

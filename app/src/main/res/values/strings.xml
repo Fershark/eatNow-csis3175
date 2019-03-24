@@ -24,6 +24,8 @@
 
     <!-- Register activity -->
     <string name="confirmPassword">Confirm Password</string>
+    <string name="edit">Edit</string>
+    <string name="userUpdated">Updated Successfully</string>
 
     <!-- SearchRestaurant fragment -->
     <string name="addressMessage">Enter an address</string>
@@ -32,13 +34,15 @@
 
     <!-- Profile -->
     <string name="anImage">an Image</string>
+    <string name="editProfile">Edit Profile</string>
 
     <!--Restaurants activity-->
-    <string name="restaurantsNearby">Restaurants nearby</string>
+    <string name="restaurantsNearby">Restaurants Nearby</string>
     <string name="restImgDesc">Restaurant Logo</string>
     <string name="distanceFormat">%1$s km</string>
 
     <!-- Validation -->
+    <string name="someErrors">There are some errors</string>
     <string name="required">This field is required</string>
     <string name="invalid">This field is invalid</string>
     <string name="emailExist">This email was previously signed up</string>

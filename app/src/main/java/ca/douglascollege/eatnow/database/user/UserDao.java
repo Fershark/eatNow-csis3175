@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public interface UserDao {
 
     @Insert
     void insertAll(List<User> users);
+
+    @Update
+    int updateUser(User User);
 
     @Query("SELECT * FROM User")
     LiveData<List<User>> getUsers();

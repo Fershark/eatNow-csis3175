@@ -10,24 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <TextView
-            android:id="@+id/txtPromotion2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
-            android:gravity="center"
-            android:text="@string/receivePromotion"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiAddress" />
-
         <TextView
             android:id="@+id/txtRegister"
             android:layout_width="wrap_content"
@@ -210,32 +192,55 @@
                 tools:ignore="Autofill" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tiEmailRecommend"
-            android:layout_width="match_parent"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clRecommend"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
             android:layout_marginRight="64dp"
-            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPromotion2">
+            app:layout_constraintTop_toBottomOf="@+id/tiAddress">
 
-            <EditText
-                android:id="@+id/etEmailRecommend"
+            <TextView
+                android:id="@+id/txtPromotion"
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:gravity="center"
+                android:text="@string/receivePromotion"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tiEmailRecommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/icon_loyalty"
-                android:drawableLeft="@drawable/icon_loyalty"
-                android:ems="10"
-                android:hint="@string/emailRecommendationDescription"
-                android:inputType="textEmailAddress"
-                android:theme="@style/AppTheme.EditText"
-                tools:ignore="Autofill" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="16dp"
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPromotion">
+
+                <EditText
+                    android:id="@+id/etEmailRecommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/icon_loyalty"
+                    android:drawableLeft="@drawable/icon_loyalty"
+                    android:ems="10"
+                    android:hint="@string/emailRecommendationDescription"
+                    android:inputType="textEmailAddress"
+                    android:theme="@style/AppTheme.EditText"
+                    tools:ignore="Autofill" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.constraint.ConstraintLayout>
 
         <Button
             android:id="@+id/btnSubmit"
@@ -252,6 +257,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiEmailRecommend" />
+            app:layout_constraintTop_toBottomOf="@+id/clRecommend" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -19,7 +19,7 @@ import ca.douglascollege.eatnow.database.restaurant.RestaurantDao;
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserDao;
 
-@Database(entities = {User.class, Restaurant.class, Product.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class, Product.class}, version = 7, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -76,7 +76,7 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     private static ArrayList<User> defaultUsers() {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User(1, FIRST_EMAIL, "", "Client", "eatnow", new Date()));
+        users.add(new User(FIRST_EMAIL, "7787777777", "Client", "eatnow", "700 Royal Ave", new Date()));
         return users;
     }
 

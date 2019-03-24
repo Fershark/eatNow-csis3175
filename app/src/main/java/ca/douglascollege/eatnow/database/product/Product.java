@@ -21,7 +21,7 @@ public class Product implements Serializable {
     private String description;
     @ColumnInfo(name = "unit_price")
     private float unitPrice;
-    @ColumnInfo(name = "restaurant_id")
+    @ColumnInfo(name = "restaurant_id", index = true)
     private int restaurantId;
 
     public Product(String name, String image, String description, float unitPrice, int restaurantId) {

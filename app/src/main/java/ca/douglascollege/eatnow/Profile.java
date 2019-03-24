@@ -1,26 +1,20 @@
 package ca.douglascollege.eatnow;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import ca.douglascollege.eatnow.utilities.Helper;
 
 public class Profile extends Fragment {
 
@@ -57,22 +51,25 @@ public class Profile extends Fragment {
 
         String [] from = {"images", "text"};
         int [] to = {R.id.imageView_profile, R.id.textView_profile};
-        SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.profile_layout, from, to);
+        SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.adapter_profile_layout, from, to);
 
         ListView lv = (ListView) view.findViewById(R.id.listView_profile);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i;
                 switch (position)
                 {
                     case 0:
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.douglascollege.ca/")));
+                        i = new Intent(getActivity(), Register.class);
+                        i.putExtra("isEdit", true);
+                        startActivity(i);
                         break;
                     case 1:
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                        preferences.edit().clear().commit();
-                        Intent i = new Intent(getActivity(), Welcome.class);
+                        Helper helper = new Helper(getActivity());
+                        helper.removeLoggedUser();
+                        i = new Intent(getActivity(), Welcome.class);
                         startActivity(i);
                         getActivity().finish();
                         break;

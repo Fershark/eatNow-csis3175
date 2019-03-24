@@ -30,6 +30,16 @@ public class UserRepository {
         }.execute();
     }
 
+    public void updateUser(final User user) {
+         new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                appDatabase.userDao().updateUser(user);
+                return null;
+            }
+        }.execute();
+    }
+
     public LiveData<List<User>> getUsers() {
         return appDatabase.userDao().getUsers();
     }
