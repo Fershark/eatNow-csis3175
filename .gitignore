@@ -1,6 +1,12 @@
 # MAC
 .DS_Store
 
+app/.settings
+app/.project
+app/.classpath
+.settings
+.project
+
 # Built application files
 *.apk
 *.ap_
