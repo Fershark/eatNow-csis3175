@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
                 User user = validation.validExistingEmail(tiEmail, etEmail);
                 boolean isPasswordOk = validation.isValidPassword(tiPassword, etPassword);
 
-                if(user != null && isPasswordOk) {
+                if (user != null && isPasswordOk) {
                     String password = etPassword.getText().toString();
                     String email = etEmail.getText().toString();
 
@@ -47,10 +47,9 @@ public class Login extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("email", email);
                         editor.commit();
-                        Intent i = new Intent(Login.this, Home.class);
+                        Intent i = new Intent(Login.this.getApplicationContext(), Home.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
-                        finish();
                     } else {
                         tiPassword.setError(Login.this.getString(R.string.incorrectPassword));
                     }

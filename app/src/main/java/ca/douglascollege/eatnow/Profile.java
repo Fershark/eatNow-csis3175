@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,13 +59,7 @@ public class Profile extends Fragment {
         int [] to = {R.id.imageView_profile, R.id.textView_profile};
         SimpleAdapter adapter =  new SimpleAdapter(Profile.this.getContext(), aList, R.layout.profile_layout, from, to);
 
-        if(adapter==null){
-            Toast.makeText(Profile.this.getContext(),"ADAPTER NULL", Toast.LENGTH_LONG).show();
-        }
         ListView lv = (ListView) view.findViewById(R.id.listView_profile);
-        if(lv==null){
-            Toast.makeText(Profile.this.getContext(),"List NULL", Toast.LENGTH_LONG).show();
-        }
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,15 +69,17 @@ public class Profile extends Fragment {
                     case 0:
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.douglascollege.ca/")));
                         break;
-
                     case 1:
-                        SharedPreferences preferences = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                         preferences.edit().clear().commit();
-                        startActivity(new Intent(getActivity(), Welcome.class));
+                        Intent i = new Intent(getActivity(), Welcome.class);
+                        startActivity(i);
+                        getActivity().finish();
                         break;
                 }
             }
         });
+
         return view;
     }
 }
