@@ -4,10 +4,11 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.location.Location;
-import android.util.Log;
+
+import java.io.Serializable;
 
 @Entity
-public class Restaurant implements Comparable<Restaurant> {
+public class Restaurant implements Comparable<Restaurant>, Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String image;

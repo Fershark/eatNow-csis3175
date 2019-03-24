@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.Collections;
@@ -57,6 +59,16 @@ public class Restaurants extends AppCompatActivity {
                     restaurant.setDistanceFromUser(userLocation);
                 Collections.sort(restaurants);
                 restaurantAdapter.setRestaurants(restaurants);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Restaurant restaurant = (Restaurant) parent.getAdapter().getItem(position);
+                Intent i = new Intent(Restaurants.this, RestaurantMenu.class);
+                i.putExtra("restaurant", restaurant);
+                startActivity(i);
             }
         });
     }
