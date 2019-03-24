@@ -13,6 +13,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="textAllCaps">false</item>
 
+        <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
         <item name="buttonStyle">@style/AppTheme.Button</item>
         <item name="editTextStyle">@style/AppTheme.EditText</item>
     </style>
@@ -58,4 +59,12 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- Action Bar styles -->
+    <style name="AppTheme.ActionBar" parent="Base.Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
+        <item name="background">@color/colorPrimary</item>
+    </style>
+    <style name="AppTheme.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 </resources>

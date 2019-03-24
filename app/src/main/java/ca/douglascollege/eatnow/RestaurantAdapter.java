@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import ca.douglascollege.eatnow.database.Restaurant;
@@ -16,11 +17,13 @@ import ca.douglascollege.eatnow.database.Restaurant;
 class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     private Context mContext;
     private int mResource;
+    DecimalFormat decimalFormat;
 
     public RestaurantAdapter(Context context) {
-        super(context, R.layout.adapter_view_layout);
+        super(context, R.layout.adapter_restaurant_layout);
         mContext = context;
-        mResource = R.layout.adapter_view_layout;
+        mResource = R.layout.adapter_restaurant_layout;
+        decimalFormat = new DecimalFormat("#,###.##");
     }
 
     public void setRestaurants(List<Restaurant> restaurants) {
@@ -33,26 +36,26 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Restaurant restaurant = getItem(position);
 
-        int imageId = restaurant.getImageId();
+        String imageString = restaurant.getImage();
         String name = restaurant.getName();
         String phone = restaurant.getPhone();
         String type = restaurant.getType();
         double lat = restaurant.getLatitude();
         double lng = restaurant.getLongitude();
-        int distance = restaurant.getDistanceFromUser();
+        float distance = restaurant.getDistanceFromUser();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        ImageView imageView = convertView.findViewById(R.id.imageView1);
-        TextView tvName = convertView.findViewById(R.id.tvName);
-        TextView tvType = convertView.findViewById(R.id.tvType);
-        TextView tvDistance = convertView.findViewById(R.id.tvDistance);
+        ImageView imageView = convertView.findViewById(R.id.imgLogo);
+        TextView txtName = convertView.findViewById(R.id.txtName);
+        TextView txtType = convertView.findViewById(R.id.txtType);
+        TextView txtDistance = convertView.findViewById(R.id.txtDistance);
 
-        imageView.setImageResource(imageId);
-        tvName.setText(name);
-        tvType.setText(type);
-        tvDistance.setText(mContext.getString(R.string.distanceFormat, Integer.toString(distance)));
+        imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));
+        txtName.setText(name);
+        txtType.setText(type);
+        txtDistance.setText(mContext.getString(R.string.distanceFormat, decimalFormat.format(distance)));
 
         return convertView;
     }

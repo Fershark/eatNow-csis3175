@@ -17,6 +17,7 @@
     <string name="incorrectPassword">Incorrect password</string>
 
     <!-- Home activity -->
+    <string name="home">Home</string>
     <string name="order">Order</string>
     <string name="history">History</string>
     <string name="profile">Profile</string>
@@ -33,8 +34,9 @@
     <string name="anImage">an Image</string>
 
     <!--Restaurants activity-->
+    <string name="restaurantsNearby">Restaurants nearby</string>
     <string name="restImgDesc">Restaurant Logo</string>
-    <string name="distanceFormat">%1$s m</string>
+    <string name="distanceFormat">%1$s km</string>
 
     <!-- Validation -->
     <string name="required">This field is required</string>

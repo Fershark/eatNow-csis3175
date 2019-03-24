@@ -12,9 +12,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Date;
 
-import ca.douglascollege.eatnow.R;
-
-@Database(entities = {User.class, Restaurant.class}, version = 3, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class}, version = 4, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -81,16 +79,16 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     private static ArrayList<Restaurant> getRestaurants() {
         ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "1541239871", "Triple O's", "Fast Food", 49.203512, -122.912552));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "2541239871", "Hyack Sushi", "Japanese Food", 49.202403, -122.912562));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "3541239871", "V Cafe", "Breakfast", 49.202315, -122.912503));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "4541239871", "The Old Spaghetti Factory", "Italian Food", 49.201946, -122.912596));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "5541239871", "Ki Sushi Restaurant", "Japanese Food", 49.202023, -122.911947));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "6541239871", "Piva Modern Italian", "Pizzeria", 49.201540, -122.911385));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "7541239871", "Pizzeria Ludica", "Pizzeria", 49.204141, -122.909211));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "8541239871", "Patsara Thai", "Thai Food", 49.204325, -122.908047));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "9541239871", "Sushi Yen", "Japanese Food", 49.203921, -122.908415));
-        restaurants.add(new Restaurant(R.drawable.restaurant_image, "1111111111", " The Old Bavaria Haus Restaurant", "Steakhouse", 49.208526, -122.914147));
+        restaurants.add(new Restaurant("restaurant_triple_os", "1541239871", "Triple O's", "Fast Food", 49.203512, -122.912552));
+        restaurants.add(new Restaurant("restaurant_hyack_sushi", "2541239871", "Hyack Sushi", "Japanese Food", 49.202403, -122.912562));
+        restaurants.add(new Restaurant("restaurant_v_cafe", "3541239871", "V Cafe", "Breakfast", 49.202315, -122.912503));
+        restaurants.add(new Restaurant("restaurant_spaghetti_factory", "4541239871", "The Old Spaghetti Factory", "Italian Food", 49.201946, -122.912596));
+        restaurants.add(new Restaurant("restaurant_ki_sushi", "5541239871", "Ki Sushi Restaurant", "Japanese Food", 49.202023, -122.911947));
+        restaurants.add(new Restaurant("restaurant_piva_modern_italian", "6541239871", "Piva Modern Italian", "Pizzeria", 49.201540, -122.911385));
+        restaurants.add(new Restaurant("restaurant_pizzeria_ludica", "7541239871", "Pizzeria Ludica", "Pizzeria", 49.204141, -122.909211));
+        restaurants.add(new Restaurant("restaurant_patsara_thai", "8541239871", "Patsara Thai", "Thai Food", 49.204325, -122.908047));
+        restaurants.add(new Restaurant("restaurant_sushi_yen", "9541239871", "Sushi Yen", "Japanese Food", 49.203921, -122.908415));
+        restaurants.add(new Restaurant("restaurant_bavaria_haus", "1111111111", "The Old Bavaria Haus Restaurant", "Steakhouse", 49.208526, -122.914147));
 
         return restaurants;
     }

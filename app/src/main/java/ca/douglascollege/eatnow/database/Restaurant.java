@@ -4,22 +4,23 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.location.Location;
+import android.util.Log;
 
 @Entity
 public class Restaurant implements Comparable<Restaurant> {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int imageId;
+    private String image;
     private String phone;
     private String name;
     private String type;
     private double latitude;
     private double longitude;
     @Ignore
-    private int distanceFromUser;
+    private float distanceFromUser;
 
-    public Restaurant(int imageId, String phone, String name, String type, double latitude, double longitude) {
-        this.imageId = imageId;
+    public Restaurant(String image, String phone, String name, String type, double latitude, double longitude) {
+        this.image = image;
         this.name = name;
         this.phone = phone;
         this.type = type;
@@ -35,12 +36,12 @@ public class Restaurant implements Comparable<Restaurant> {
         this.id = id;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -83,7 +84,7 @@ public class Restaurant implements Comparable<Restaurant> {
         this.phone = phone;
     }
 
-    public int getDistanceFromUser() {
+    public float getDistanceFromUser() {
         return distanceFromUser;
     }
 
@@ -92,10 +93,18 @@ public class Restaurant implements Comparable<Restaurant> {
         restaurantLocation.setLatitude(latitude);
         restaurantLocation.setLongitude(longitude);
 
-        distanceFromUser = (int) userLocation.distanceTo(restaurantLocation);
+        //Distance is get in meters, it will be transformed to kms
+        float distanceFromUserKms = userLocation.distanceTo(restaurantLocation) / 1000;
+        //Round it to two decimal
+        distanceFromUser = ((float) Math.round(distanceFromUserKms * 100)) / 100;
     }
 
     public int compareTo(Restaurant r) {
-        return distanceFromUser - r.getDistanceFromUser();
+        if (distanceFromUser > r.getDistanceFromUser())
+            return 1;
+        else if (distanceFromUser < r.getDistanceFromUser())
+            return -1;
+        else
+            return 0;
     }
 }

@@ -32,7 +32,9 @@
         <activity
             android:name=".Home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Restaurants" />
+        <activity
+            android:name=".Restaurants"
+            android:label="@string/restaurantsNearby"/>
     </application>
 
 </manifest>
