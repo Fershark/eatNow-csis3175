@@ -42,4 +42,9 @@ public class Helper {
 
         return user;
     }
+
+    public static float roundToDigits(float numToRound, int digits) {
+        int tenPow = (int) Math.pow(10, digits);
+        return ((float) Math.round(numToRound * tenPow)) / tenPow;
+    }
 }

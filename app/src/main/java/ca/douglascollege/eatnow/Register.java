@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import java.util.Date;
 
+import ca.douglascollege.eatnow.database.recommendation.Recommendation;
+import ca.douglascollege.eatnow.database.recommendation.RecommendationRepository;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserRepository;
@@ -119,7 +121,12 @@ public class Register extends AppCompatActivity {
                 boolean isPhoneOk = validation.isValidPhone(tiPhone, etPhone);
                 boolean isAddressOk = validation.isValidAddress(tiAddress, etAddress);
                 boolean recommendationEmailEntered = (etEmailRecommend.getText().toString().length() > 0);
-                boolean isEmailRecOk = !recommendationEmailEntered || validation.isValidExistingEmail(tiEmailRecommend, etEmailRecommend);
+                boolean isEmailRecOk = true;
+                User recommendedUser = null;
+                if (recommendationEmailEntered) {
+                    recommendedUser = validation.validExistingEmail(tiEmailRecommend, etEmailRecommend);
+                    isEmailRecOk = (recommendedUser != null);
+                }
 
                 if (isEmailOk && isPasswordOk && isConfirmPasswordOk && isNameOk && isPhoneOk && isAddressOk && isEmailRecOk) {
                     UserRepository userRepository = new UserRepository(Register.this.getApplicationContext());
@@ -134,10 +141,13 @@ public class Register extends AppCompatActivity {
                     } else {
                         User user = new User(etEmail.getText().toString(), etPhone.getText().toString(),
                                 etName.getText().toString(), etPassword.getText().toString(), etAddress.getText().toString(), new Date());
-                        userRepository.insertUser(user);
+                        int newId = userRepository.insertUser(user);
 
-                        if (recommendationEmailEntered) {
-                            //TODO: register the promotion for both users
+                        if (recommendationEmailEntered && newId != -1) {
+                            float discount = Helper.roundToDigits((float) .1, 1);
+                            Recommendation recommendation = new Recommendation(discount, recommendedUser.getId(), newId);
+                            RecommendationRepository recommendationRepository = new RecommendationRepository(Register.this.getApplicationContext());
+                            recommendationRepository.insertRecommendation(recommendation);
                         }
 
                         //Login

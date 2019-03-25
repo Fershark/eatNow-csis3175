@@ -20,14 +20,24 @@ public class UserRepository {
         appDatabase = AppDatabase.getInstance(context);
     }
 
-    public void insertUser(final User user) {
-        new AsyncTask<Void, Void, Void>() {
+    public int insertUser(final User user) {
+        int id = -1;
+
+        Callable<Integer> callable = new Callable<Integer>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                appDatabase.userDao().insertUser(user);
-                return null;
+            public Integer call() throws Exception {
+                return appDatabase.userDao().insertUser(user).intValue();
             }
-        }.execute();
+        };
+
+        Future<Integer> future = Executors.newSingleThreadExecutor().submit(callable);
+        try {
+            id = future.get();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        return id;
     }
 
     public void updateUser(final User user) {

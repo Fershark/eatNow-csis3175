@@ -7,6 +7,8 @@ import android.location.Location;
 
 import java.io.Serializable;
 
+import ca.douglascollege.eatnow.utilities.Helper;
+
 @Entity
 public class Restaurant implements Comparable<Restaurant>, Serializable {
     @PrimaryKey(autoGenerate = true)
@@ -97,7 +99,7 @@ public class Restaurant implements Comparable<Restaurant>, Serializable {
         //Distance is get in meters, it will be transformed to kms
         float distanceFromUserKms = userLocation.distanceTo(restaurantLocation) / 1000;
         //Round it to two decimal
-        distanceFromUser = ((float) Math.round(distanceFromUserKms * 100)) / 100;
+        distanceFromUser = Helper.roundToDigits(distanceFromUserKms, 2);
     }
 
     public int compareTo(Restaurant r) {

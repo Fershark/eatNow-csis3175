@@ -14,12 +14,14 @@ import java.util.Date;
 
 import ca.douglascollege.eatnow.database.product.Product;
 import ca.douglascollege.eatnow.database.product.ProductDao;
+import ca.douglascollege.eatnow.database.recommendation.Recommendation;
+import ca.douglascollege.eatnow.database.recommendation.RecommendationDao;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 import ca.douglascollege.eatnow.database.restaurant.RestaurantDao;
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserDao;
 
-@Database(entities = {User.class, Restaurant.class, Product.class}, version = 7, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class, Product.class, Recommendation.class}, version = 8, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -29,6 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract RestaurantDao restaurantDao();
     public abstract ProductDao productDao();
+    public abstract RecommendationDao recommendationDao();
 
     public static AppDatabase getInstance(final Context context) {
         if (INSTANCE == null) {

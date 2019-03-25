@@ -19,7 +19,7 @@ public interface UserDao {
     void insertAll(List<User> users);
 
     @Update
-    int updateUser(User User);
+    int updateUser(User user);
 
     @Query("SELECT * FROM User")
     LiveData<List<User>> getUsers();
