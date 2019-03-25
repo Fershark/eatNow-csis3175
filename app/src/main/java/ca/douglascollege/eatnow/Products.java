@@ -2,10 +2,14 @@ package ca.douglascollege.eatnow;
 
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -15,9 +19,12 @@ import ca.douglascollege.eatnow.database.product.ProductRepository;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 
 public class Products extends AppCompatActivity {
-    private final String TAG = "PRODUCTS";
+    private static final String TAG = "PRODUCTS";
+    private static final int VIEW_ORDER_HEIGHT = 60;
+    private static final int DETAIL_ACTIVITY_REQUEST = 1;
     Restaurant restaurant;
     ProductAdapter productAdapter;
+    ConstraintLayout clViewOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +53,36 @@ public class Products extends AppCompatActivity {
                 productAdapter.setProducts(products);
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Product product = (Product) parent.getAdapter().getItem(position);
+                Intent i = new Intent(Products.this, ProductDetail.class);
+                i.putExtra("product", product);
+                startActivityForResult(i, DETAIL_ACTIVITY_REQUEST);
+            }
+        });
+
+        clViewOrder = findViewById(R.id.clViewOrder);
+        clViewOrder.setVisibility(View.INVISIBLE);
+        clViewOrder.setMaxHeight(0);
+        clViewOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "CLICKED");
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DETAIL_ACTIVITY_REQUEST) {
+            Log.d(TAG, "WORKING");
+            if (resultCode == RESULT_OK) {
+                data.getSerializableExtra("order_detail");
+            }
+        }
     }
 }

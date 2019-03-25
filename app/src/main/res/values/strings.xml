@@ -36,10 +36,13 @@
     <string name="anImage">an Image</string>
     <string name="editProfile">Edit Profile</string>
 
-    <!--Restaurants activity-->
+    <!-- Restaurants activity -->
     <string name="restaurantsNearby">Restaurants Nearby</string>
     <string name="restImgDesc">Restaurant Logo</string>
-    <string name="distanceFormat">%1$s km</string>
+
+    <!-- Products activity -->
+    <string name="viewOrder">View Order</string>
+    <string name="zero">0</string>
 
     <!-- Validation -->
     <string name="someErrors">There are some errors</string>

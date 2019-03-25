@@ -23,7 +23,7 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         super(context, R.layout.adapter_restaurant_layout);
         mContext = context;
         mResource = R.layout.adapter_restaurant_layout;
-        decimalFormat = new DecimalFormat("#,###.##");
+        decimalFormat = new DecimalFormat("#,###.## km");
     }
 
     public void setRestaurants(List<Restaurant> restaurants) {
@@ -55,7 +55,7 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));
         txtName.setText(name);
         txtType.setText(type);
-        txtDistance.setText(mContext.getString(R.string.distanceFormat, decimalFormat.format(distance)));
+        txtDistance.setText(decimalFormat.format(distance));
 
         return convertView;
     }
