@@ -47,9 +47,9 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        ImageView imageView = convertView.findViewById(R.id.imgLogo);
+        ImageView imageView = convertView.findViewById(R.id.imgImage);
         TextView txtName = convertView.findViewById(R.id.txtName);
-        TextView txtType = convertView.findViewById(R.id.txtType);
+        TextView txtType = convertView.findViewById(R.id.txtDescription);
         TextView txtDistance = convertView.findViewById(R.id.txtDistance);
 
         imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));

@@ -18,8 +18,7 @@ import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 import ca.douglascollege.eatnow.database.restaurant.RestaurantRepository;
 
 public class Restaurants extends AppCompatActivity {
-    private final String TAG = "RESTAURANTS_ACTIVITY";
-    private final int SIZE = 10;
+    private final String TAG = "RESTAURANTS";
     private Location userLocation;
 
     @Override

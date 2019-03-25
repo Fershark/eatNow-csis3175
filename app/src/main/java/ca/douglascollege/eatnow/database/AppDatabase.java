@@ -21,7 +21,7 @@ import ca.douglascollege.eatnow.database.restaurant.RestaurantDao;
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserDao;
 
-@Database(entities = {User.class, Restaurant.class, Product.class, Recommendation.class}, version = 8, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class, Product.class, Recommendation.class}, version = 9, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -112,7 +112,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("Test product", "restaurant_image", "test description", (float) 11.1, 1));
-        products.add(new Product("Test product 2", "restaurant_image", "test description 2", (float) 11.1, 10));
+        products.add(new Product("Test product 2", "restaurant_image", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 11.1, 10));
+        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
         return products;
     }
 }
