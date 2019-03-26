@@ -61,7 +61,10 @@ public class ProductDetail extends AppCompatActivity {
             imgImage.setImageResource(getResources().getIdentifier(product.getImage(), "drawable", getPackageName()));
         else
             Helper.hideComponentInConstraintLayout(imgImage);
-        txtDescription.setText(product.getDescription());
+        if (!product.getDescription().equals(""))
+            txtDescription.setText(product.getDescription());
+        else
+            Helper.hideComponentInConstraintLayout(txtDescription);
         setQuantity(orderDetail.getQuantity());
 
         btnLess.setOnClickListener(new View.OnClickListener() {
