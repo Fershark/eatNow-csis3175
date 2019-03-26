@@ -14,12 +14,14 @@ import android.widget.ListView;
 import java.util.Collections;
 import java.util.List;
 
+import ca.douglascollege.eatnow.database.order.Order;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 import ca.douglascollege.eatnow.database.restaurant.RestaurantRepository;
 
 public class Restaurants extends AppCompatActivity {
     private final String TAG = "RESTAURANTS";
     private Location userLocation;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class Restaurants extends AppCompatActivity {
         if (intent != null) {
             latitude = intent.getDoubleExtra("latitude", 0);
             longitude = intent.getDoubleExtra("longitude", 0);
+            order = (Order) intent.getSerializableExtra("order");
         }
         Log.d(TAG, "Lat/Long : " + latitude + " " + longitude);
 
@@ -67,6 +70,7 @@ public class Restaurants extends AppCompatActivity {
                 Restaurant restaurant = (Restaurant) parent.getAdapter().getItem(position);
                 Intent i = new Intent(Restaurants.this, Products.class);
                 i.putExtra("restaurant", restaurant);
+                i.putExtra("order", order);
                 startActivity(i);
             }
         });

@@ -67,25 +67,14 @@ public class Register extends AppCompatActivity {
             getSupportActionBar().setLogo(R.mipmap.ic_launcher);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-            //Initialize the variable to disappear margins in the layout
-            ConstraintLayout.LayoutParams params;
-
-            //Hide unused components and make their margin 0
+            //Hide unused components
             //Title
             TextView txtRegister = findViewById(R.id.txtRegister);
-            txtRegister.setVisibility(View.INVISIBLE);
-            txtRegister.setHeight(0);
-            params = (ConstraintLayout.LayoutParams) txtRegister.getLayoutParams();
-            params.topMargin = 0;
-            txtRegister.setLayoutParams(params);
+            Helper.hideComponentInConstraintLayout(txtRegister);
 
             //Promotion Hide
             ConstraintLayout clRecommend = findViewById(R.id.clRecommend);
-            clRecommend.setVisibility(View.INVISIBLE);
-            clRecommend.setMaxHeight(0);
-            params = (ConstraintLayout.LayoutParams) clRecommend.getLayoutParams();
-            params.topMargin = 0;
-            clRecommend.setLayoutParams(params);
+            Helper.hideComponentInConstraintLayout(clRecommend);
 
             //Change btn title
             btnSubmit.setText(getString(R.string.edit));

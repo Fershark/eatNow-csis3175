@@ -17,12 +17,13 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/clViewOrder"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/bottom_banner_height"
         android:background="@drawable/selector_view_order"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/txtViewOrder"

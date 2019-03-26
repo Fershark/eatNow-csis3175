@@ -12,6 +12,10 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Date;
 
+import ca.douglascollege.eatnow.database.order.Order;
+import ca.douglascollege.eatnow.database.order.OrderDao;
+import ca.douglascollege.eatnow.database.orderDetail.OrderDetail;
+import ca.douglascollege.eatnow.database.orderDetail.OrderDetailDao;
 import ca.douglascollege.eatnow.database.product.Product;
 import ca.douglascollege.eatnow.database.product.ProductDao;
 import ca.douglascollege.eatnow.database.recommendation.Recommendation;
@@ -21,7 +25,14 @@ import ca.douglascollege.eatnow.database.restaurant.RestaurantDao;
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserDao;
 
-@Database(entities = {User.class, Restaurant.class, Product.class, Recommendation.class}, version = 10, exportSchema = false)
+@Database(entities = {
+        User.class,
+        Restaurant.class,
+        Product.class,
+        Recommendation.class,
+        Order.class,
+        OrderDetail.class
+}, version = 11, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -32,6 +43,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RestaurantDao restaurantDao();
     public abstract ProductDao productDao();
     public abstract RecommendationDao recommendationDao();
+    public abstract OrderDao orderDao();
+    public abstract OrderDetailDao orderDetailDao();
 
     public static AppDatabase getInstance(final Context context) {
         if (INSTANCE == null) {

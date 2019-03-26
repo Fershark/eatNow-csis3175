@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ca.douglascollege.eatnow.database.order.Order;
 import ca.douglascollege.eatnow.utilities.Validation;
 
 public class SearchRestaurant extends Fragment {
@@ -52,6 +53,7 @@ public class SearchRestaurant extends Fragment {
                     Intent i = new Intent(getActivity(), Restaurants.class);
                     i.putExtra("latitude", address.getLatitude());
                     i.putExtra("longitude", address.getLongitude());
+                    i.putExtra("order", new Order(etAddress.getText().toString()));
                     startActivity(i);
                 }
             }

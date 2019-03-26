@@ -9,22 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import ca.douglascollege.eatnow.database.product.Product;
+import ca.douglascollege.eatnow.utilities.Helper;
 
 
 class ProductAdapter extends ArrayAdapter<Product> {
     private Context mContext;
     private int mResource;
-    DecimalFormat decimalFormat;
 
     public ProductAdapter(Context context) {
         super(context, R.layout.adapter_product_layout);
         mContext = context;
         mResource = R.layout.adapter_product_layout;
-        decimalFormat = new DecimalFormat("$ #,###.##");
     }
 
     public void setProducts(List<Product> products) {
@@ -54,7 +52,7 @@ class ProductAdapter extends ArrayAdapter<Product> {
             imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));
         txtName.setText(name);
         txtDescription.setText(description);
-        txtPrice.setText(decimalFormat.format(unitPrice));
+        txtPrice.setText(Helper.getCurrencyFormatted(unitPrice));
 
         return convertView;
     }

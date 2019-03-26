@@ -2,7 +2,6 @@ package ca.douglascollege.eatnow.database.product;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class ProductRepository {
     }
 
     public LiveData<List<Product>> findProductsForRestaurant(int restaurantId) {
-        return appDatabase.productDao().findProductsForRestaurant(restaurantId);
+        return appDatabase.productDao().findProductsByRestaurant(restaurantId);
     }
 
     public Product getProduct(final int id) {

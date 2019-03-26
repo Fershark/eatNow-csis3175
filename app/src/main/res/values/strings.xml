@@ -44,6 +44,14 @@
     <string name="viewOrder">View Order</string>
     <string name="zero">0</string>
 
+    <!-- Product detail activity -->
+    <string name="quantity">Quantity</string>
+    <string name="specialInstructions">Special Instructions (Optional)</string>
+    <string name="addToOrder">Add To Order</string>
+    <string name="imgProduct">Product Image</string>
+    <string name="less">-</string>
+    <string name="more">+</string>
+
     <!-- Validation -->
     <string name="someErrors">There are some errors</string>
     <string name="required">This field is required</string>

@@ -2,7 +2,6 @@ package ca.douglascollege.eatnow;
 
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,20 +10,30 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ca.douglascollege.eatnow.database.order.Order;
+import ca.douglascollege.eatnow.database.orderDetail.OrderDetail;
 import ca.douglascollege.eatnow.database.product.Product;
 import ca.douglascollege.eatnow.database.product.ProductRepository;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
+import ca.douglascollege.eatnow.utilities.Helper;
 
 public class Products extends AppCompatActivity {
     private static final String TAG = "PRODUCTS";
     private static final int VIEW_ORDER_HEIGHT = 60;
     private static final int DETAIL_ACTIVITY_REQUEST = 1;
     Restaurant restaurant;
+    Order order;
+    List<OrderDetail> orderDetails;
     ProductAdapter productAdapter;
     ConstraintLayout clViewOrder;
+    TextView txtProductsNum;
+    TextView txtTotalPrice;
+    private boolean isViewOrderHidden = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +41,11 @@ public class Products extends AppCompatActivity {
         setContentView(R.layout.activity_products);
 
         Intent intent = getIntent();
-        if (intent != null)
+        if (intent != null) {
             restaurant = (Restaurant) intent.getSerializableExtra("restaurant");
+            order = (Order) intent.getSerializableExtra("order");
+        }
+        orderDetails = new ArrayList<>();
 
         // Set the image in the toolbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -65,8 +77,11 @@ public class Products extends AppCompatActivity {
         });
 
         clViewOrder = findViewById(R.id.clViewOrder);
-        clViewOrder.setVisibility(View.INVISIBLE);
-        clViewOrder.setMaxHeight(0);
+        txtProductsNum = findViewById(R.id.txtProductsNum);
+        txtTotalPrice = findViewById(R.id.txtTotalPrice);
+
+        updateOrder();
+        Helper.hideComponentInConstraintLayout(clViewOrder);
         clViewOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,13 +90,25 @@ public class Products extends AppCompatActivity {
         });
     }
 
+    private void updateOrder() {
+        txtProductsNum.setText(Integer.toString(orderDetails.size()));
+        txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPrice()));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == DETAIL_ACTIVITY_REQUEST) {
-            Log.d(TAG, "WORKING");
             if (resultCode == RESULT_OK) {
-                data.getSerializableExtra("order_detail");
+                OrderDetail orderDetail = (OrderDetail) data.getSerializableExtra("orderDetail");
+                orderDetails.add(orderDetail);
+                order.addToTotalprice(orderDetail.getTotalPrice());
+                updateOrder();
+
+                if (isViewOrderHidden) {
+                    Helper.showComponentInConstraintLayout(clViewOrder, (int) getResources().getDimension(R.dimen.bottom_banner_height));
+                    isViewOrderHidden = false;
+                }
             }
         }
     }

@@ -17,7 +17,7 @@ public interface ProductDao {
     Product getProduct(int id);
 
     @Query("SELECT * FROM Product WHERE restaurant_id = :restaurantId")
-    LiveData<List<Product>> findProductsForRestaurant(int restaurantId);
+    LiveData<List<Product>> findProductsByRestaurant(int restaurantId);
 
     @Query("SELECT COUNT(*) FROM Product")
     int getCount();

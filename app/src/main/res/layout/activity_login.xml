@@ -21,67 +21,69 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tiEmail"
-        app:errorEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
+        android:layout_marginStart="@dimen/app_margin_wide"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginEnd="@dimen/app_margin_wide"
+        android:layout_marginRight="24dp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLogin">
+
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/icon_account"
+            android:drawableLeft="@drawable/icon_account"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/icon_account"
-            android:drawableStart="@drawable/icon_account"
             android:theme="@style/AppTheme.EditText"
-            tools:ignore="AutoFill"/>
+            tools:ignore="AutoFill" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tiPassword"
-        app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
+        android:layout_marginStart="@dimen/app_margin_wide"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginEnd="@dimen/app_margin_wide"
+        android:layout_marginRight="24dp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiEmail">
+        app:layout_constraintTop_toBottomOf="@+id/tiEmail"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorPrimary">
+
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/icon_lock"
+            android:drawableLeft="@drawable/icon_lock"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:theme="@style/AppTheme.EditText"
-            tools:ignore="AutoFill"
-            android:drawableLeft="@drawable/icon_lock"
-            android:drawableStart="@drawable/icon_lock" />
+            tools:ignore="AutoFill" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
+        android:layout_marginStart="@dimen/app_margin_wide"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginEnd="@dimen/app_margin_wide"
+        android:layout_marginRight="24dp"
         android:text="@string/logIn"
         android:theme="@style/AppTheme.Button"
         app:layout_constraintEnd_toEndOf="parent"
