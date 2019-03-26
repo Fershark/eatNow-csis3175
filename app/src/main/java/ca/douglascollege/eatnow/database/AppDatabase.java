@@ -29,8 +29,11 @@ public abstract class AppDatabase extends RoomDatabase {
     private static String FIRST_EMAIL = "client@gmail.com";
 
     public abstract UserDao userDao();
+
     public abstract RestaurantDao restaurantDao();
+
     public abstract ProductDao productDao();
+
     public abstract RecommendationDao recommendationDao();
 
     public static AppDatabase getInstance(final Context context) {
@@ -111,29 +114,132 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     private static ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Test product", "restaurant_image", "test description", (float) 11.1, 1));
-        products.add(new Product("Test product 2", "restaurant_image", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 11.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
-        products.add(new Product("Test product 3", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", (float) 18.1, 10));
+        products.addAll(getTripleOProducts());
+        products.addAll(getHyackProducts());
+        products.addAll(getVCafeProducts());
+        products.addAll(getSpaghettiFactoryProducts());
+        products.addAll(getKiSushiProducts());
+        products.addAll(getPivaProducts());
+        products.addAll(getLudicaProducts());
+        products.addAll(getPatsaraProducts());
+        products.addAll(getSushiYenProducts());
+        products.addAll(getBavariaProducts());
         return products;
     }
+
+    private static ArrayList<Product> getTripleOProducts() {
+        int restaurantId = 1;//Triple O
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("2-Piece Crispy Fish Burger", "restaurant_image", "Two Ocean Wise crispy beer battered cod fillets, crisp iceberg lettuce, fresh vine-ripened tomatoes, red onion and tartar sauce with our signature pickle on top!", (float) 5.65, restaurantId));
+        products.add(new Product("Bacon Cheddar Burger", "restaurant_image", "100% fresh Canadian beef, naturally smoked bacon, aged Canadian cheddar, crisp iceberg lettuce, fresh vine-ripened tomatoes, secret Triple O sauce and our signature pickle on top.", (float) 3.95, restaurantId));
+        products.add(new Product("Double Double", "restaurant_image", "Not one, but two 100% fresh Canadian beef patties, two slices of cheese, crisp iceberg lettuce, fresh vine-ripened tomatoes, secret Triple O sauce and two signature pickles", (float) 4.05, restaurantId));
+        products.add(new Product("Dippin’ Chicken Tenders", "restaurant_image", "Our 5-piece or 3-piece panko-breaded Dippin' Chicken tenders are made from 100% BC chicken, served your choice of dip. Try them with our signature honey mustard or chipotle mayo!", (float) 6.11, restaurantId));
+        products.add(new Product("Chocolate Milkshake", "restaurant_image", "Rich chocolate blended with local Island Farms, premium vanilla bean ice cream, topped with real whipped cream!", (float) 3.55, restaurantId));
+        products.add(new Product("Strawberry Milkshake", "restaurant_image", "BC strawberries blended with our local Island Farms, premium vanilla bean ice cream and topped with real whipped cream!", (float) 3.91, restaurantId));
+        products.add(new Product("Vanilla Milkshake", "restaurant_image", "Hand-scooped, local Island Farms vanilla bean ice cream, blended then topped with real whipped cream!", (float) 3.51, restaurantId));
+
+        return products;
+    }
+
+    private static ArrayList<Product> getHyackProducts() {
+        int restaurantId = 2;//Hyack
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("SNAPPER (TAI) NIGIRI", "restaurant_image", "Wasabi inside	", (float) 1.35, restaurantId));
+        products.add(new Product("COOKED PRAWN (EBI) NIGIRI", "restaurant_image", "Wasabi inside", (float) 1.65, restaurantId));
+        products.add(new Product(" SMOKED SALMON NIGIRI", "restaurant_image", "Wasabi inside", (float) 1.75, restaurantId));
+        products.add(new Product("Pop can", "restaurant_image", "Variety", (float) 1.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+
+    private static ArrayList<Product> getVCafeProducts() {
+        int restaurantId = 3;//VCafe
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Blueberry Muffin", "restaurant_image", "", (float) 1.15, restaurantId));
+        products.add(new Product("Strawberry Muffin", "restaurant_image", "", (float) 1.35, restaurantId));
+        products.add(new Product("Bacon and Eggs", "restaurant_image", "", (float) 2.65, restaurantId));
+        products.add(new Product("Dark Roast Coffee", "restaurant_image", "Strong flavor", (float) 1.50, restaurantId));
+        products.add(new Product("Orange Juice", "restaurant_image", "Freshly squeezed", (float) 2.50, restaurantId));
+        products.add(new Product("Hot Chocolate", "restaurant_image", "", (float) 2.50, restaurantId));
+        return products;
+    }
+
+    private static ArrayList<Product> getSpaghettiFactoryProducts() {
+        int restaurantId = 4;//SpaghettiFactory
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Spagheti and meat ball", "restaurant_image", "", (float) 9.99, restaurantId));
+        products.add(new Product("Fettuccine", "restaurant_image", "", (float) 8.98, restaurantId));
+        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Strawberry Juice", "restaurant_image", "", (float) 2.60, restaurantId));
+        products.add(new Product("Orange Juice", "restaurant_image", "Freshly squeezed", (float) 2.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+
+    private static ArrayList<Product> getKiSushiProducts() {
+        int restaurantId = 5;//KiSushi
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Salmon Sushi", "restaurant_image", "Wild Salmon", (float) 1.35, restaurantId));
+        products.add(new Product("Tuna Sushi", "restaurant_image", "Wasabi inside", (float) 1.65, restaurantId));
+        products.add(new Product("SMOKED SALMON NIGIRI", "restaurant_image", "Wasabi inside", (float) 1.75, restaurantId));
+        products.add(new Product("Pop can", "restaurant_image", "Variety", (float) 1.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+
+    private static ArrayList<Product> getPivaProducts() {
+        int restaurantId = 6;//Piva
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Pizza", "restaurant_image", "", (float) 9.99, restaurantId));
+        products.add(new Product("Fettuccine", "restaurant_image", "", (float) 8.98, restaurantId));
+        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Strawberry Juice", "restaurant_image", "", (float) 2.60, restaurantId));
+        products.add(new Product("Orange Juice", "restaurant_image", "Freshly squeezed", (float) 2.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+
+    private static ArrayList<Product> getLudicaProducts() {
+        int restaurantId = 7;//Ludica
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Tuna Pizza", "restaurant_image", "", (float) 9.99, restaurantId));
+        products.add(new Product("Cheese Pizza", "restaurant_image", "", (float) 8.98, restaurantId));
+        products.add(new Product("Crusty Pizza", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Pop", "restaurant_image", "", (float) 2.60, restaurantId));
+        products.add(new Product("Orange Juice", "restaurant_image", "Freshly squeezed", (float) 2.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+    private static ArrayList<Product> getPatsaraProducts() {
+        int restaurantId = 8;//Patsara
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Spring Rolls", "restaurant_image", "Vegetarian", (float) 6.88, restaurantId));
+        products.add(new Product("Chicken Satay", "restaurant_image", "4 skewers", (float) 7.90, restaurantId));
+        products.add(new Product("Lemon Chicken", "restaurant_image", "", (float) 8.59, restaurantId));
+        products.add(new Product("Grilled Chicken", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+    private static ArrayList<Product> getSushiYenProducts() {
+        int restaurantId = 9;//SushiYen
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Salmon Sushi", "restaurant_image", "Wild Salmon", (float) 8.50, restaurantId));
+        products.add(new Product("Tuna Sushi", "restaurant_image", "Pacific Tuna", (float) 9.50, restaurantId));
+        products.add(new Product("Smoked Salmon", "restaurant_image", "Wasabi inside", (float) 8.65, restaurantId));
+        products.add(new Product("Pop can", "restaurant_image", "Variety", (float) 2.15, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.35, restaurantId));
+        return products;
+    }
+    private static ArrayList<Product> getBavariaProducts() {
+        int restaurantId = 10;//Bavaria
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Tenderloin", "restaurant_image", "", (float) 11.99, restaurantId));
+        products.add(new Product("Sirloin", "restaurant_image", "", (float) 11.66, restaurantId));
+        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Strawberry Juice", "restaurant_image", "", (float) 2.60, restaurantId));
+        products.add(new Product("Orange Juice", "restaurant_image", "Freshly squeezed", (float) 2.50, restaurantId));
+        products.add(new Product("Iced Tea", "restaurant_image", "Lemon Iced tea", (float) 1.25, restaurantId));
+        return products;
+    }
+
 }
