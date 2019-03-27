@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import ca.douglascollege.eatnow.database.order.Order;
+import ca.douglascollege.eatnow.database.recommendation.Recommendation;
+import ca.douglascollege.eatnow.database.recommendation.RecommendationRepository;
+import ca.douglascollege.eatnow.database.user.User;
+import ca.douglascollege.eatnow.utilities.Helper;
 import ca.douglascollege.eatnow.utilities.Validation;
 
 public class RestaurantSearch extends Fragment {
@@ -50,10 +54,19 @@ public class RestaurantSearch extends Fragment {
                 Address address = validation.validAddress(tiAddress, etAddress);
 
                 if (address != null) {
+                    //Get discount from user and initialize the order
+                    Helper helper = new Helper(RestaurantSearch.this.getActivity());
+                    User user = helper.getLoggedUser();
+                    Order order = new Order(etAddress.getText().toString(), user.getId());
+                    RecommendationRepository recommendationRepository = new RecommendationRepository(RestaurantSearch.this.getActivity().getApplicationContext());
+                    Recommendation recommendation = recommendationRepository.findUnsedRecommendationByUser(user.getId());
+                    if (recommendation != null)
+                        order.setDiscount(Helper.RECOMMENDATION_DISCOUNT);
+
                     Intent i = new Intent(getActivity(), Restaurants.class);
                     i.putExtra("latitude", address.getLatitude());
                     i.putExtra("longitude", address.getLongitude());
-                    i.putExtra("order", new Order(etAddress.getText().toString()));
+                    i.putExtra("order", order);
                     startActivity(i);
                 }
             }

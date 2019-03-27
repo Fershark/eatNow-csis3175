@@ -18,5 +18,5 @@ public interface RecommendationDao {
     int updateRecommendation(Recommendation recommendation);
 
     @Query("SELECT * FROM Recommendation WHERE date_used IS NULL AND user_id = :userId LIMIT 1")
-    LiveData<List<Recommendation>> findUnsedRecommendationForUser(int userId);
+    Recommendation findUnsedRecommendationByUser(int userId);
 }

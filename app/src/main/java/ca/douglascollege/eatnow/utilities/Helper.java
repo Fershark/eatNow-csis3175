@@ -16,6 +16,8 @@ import ca.douglascollege.eatnow.database.user.UserRepository;
 
 public class Helper {
     private static final DecimalFormat CURRENCY_FORMATTER = new DecimalFormat("$ #,###.##");
+    public static final float RECOMMENDATION_DISCOUNT = .10f;
+    public static final int DELIVERY_FEE = 5;
     private Context context;
 
     public Helper(Context context) {
@@ -83,7 +85,8 @@ public class Helper {
 
     /**
      * Show component in constraint layout by specifying the height in pixels
-     * @param view The view to be shown
+     *
+     * @param view   The view to be shown
      * @param height The height in pixels of the view
      */
     public static void showComponentInConstraintLayout(View view, int height) {

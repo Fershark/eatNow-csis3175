@@ -1,11 +1,9 @@
 package ca.douglascollege.eatnow.database.recommendation;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -40,7 +38,23 @@ public class RecommendationRepository {
         }.execute();
     }
 
-    public LiveData<List<Recommendation>> findUnsedRecommendationForUser(int userId) {
-        return appDatabase.recommendationDao().findUnsedRecommendationForUser(userId);
+    public Recommendation findUnsedRecommendationByUser(final int userId) {
+        Recommendation recommendation = null;
+
+        Callable<Recommendation> callable = new Callable<Recommendation>() {
+            @Override
+            public Recommendation call() throws Exception {
+                return appDatabase.recommendationDao().findUnsedRecommendationByUser(userId);
+            }
+        };
+
+        Future<Recommendation> future = Executors.newSingleThreadExecutor().submit(callable);
+        try {
+            recommendation = future.get();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        return recommendation;
     }
 }

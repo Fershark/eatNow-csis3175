@@ -19,13 +19,13 @@ import ca.douglascollege.eatnow.utilities.Helper;
 
 
 class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
-    private OrderView mContext;
+    private OrderDetailsView mContext;
     private HashMap<Integer, Product> productsHashMap;
     private int mResource;
 
     public OrderDetailAdapter(Context context) {
         super(context, R.layout.adapter_order_detail_layout);
-        mContext = (OrderView) context;
+        mContext = (OrderDetailsView) context;
         mResource = R.layout.adapter_order_detail_layout;
         productsHashMap = new HashMap<>();
     }

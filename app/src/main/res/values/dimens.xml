@@ -9,4 +9,7 @@
     <dimen name="app_margin_wide">64dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav" tools:override="true">0dp</dimen>
     <dimen name="bottom_banner_height">60dp</dimen>
+    <dimen name="dialog_title_margin">24dp</dimen>
+    <dimen name="dialog_title_margin_bottom">0dp</dimen>
+    <dimen name="dialog_title_text_size">10sp</dimen>
 </resources>

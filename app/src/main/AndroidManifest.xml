@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderView"></activity>
+        <activity android:name=".OrderDetailsView"></activity>
         <activity android:name=".ProductDetail" />
         <activity android:name=".Products" />
         <activity
@@ -34,7 +34,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Restaurants"
             android:label="@string/restaurantsNearby" />

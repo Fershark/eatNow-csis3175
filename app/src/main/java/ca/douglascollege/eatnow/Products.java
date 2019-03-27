@@ -81,7 +81,7 @@ public class Products extends AppCompatActivity {
         clViewOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Products.this, OrderView.class);
+                Intent i = new Intent(Products.this, OrderDetailsView.class);
                 i.putExtra("order", order);
                 i.putExtra("orderDetails", orderDetails);
                 i.putExtra("restaurant", restaurant);
@@ -104,7 +104,10 @@ public class Products extends AppCompatActivity {
             order.setTotalPrice(totalPrice);
             Helper.showComponentInConstraintLayout(clViewOrder, (int) getResources().getDimension(R.dimen.bottom_banner_height));
             txtProductsNum.setText(Integer.toString(productsNum));
-            txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice));
+            if (order.getDiscount() > 0)
+                txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice * (1 - order.getDiscount())));
+            else
+                txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice));
         }
     }
 
@@ -117,8 +120,7 @@ public class Products extends AppCompatActivity {
                 orderDetails.add(orderDetail);
                 updateOrder();
             }
-        }
-        else if (requestCode == CHECKOUT_ACTIVITY_REQUEST) {
+        } else if (requestCode == CHECKOUT_ACTIVITY_REQUEST) {
             orderDetails = (ArrayList<OrderDetail>) data.getSerializableExtra("orderDetails");
             updateOrder();
         }

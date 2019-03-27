@@ -3,8 +3,12 @@ package ca.douglascollege.eatnow.database.order;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import ca.douglascollege.eatnow.database.AppDatabase;
 
@@ -16,14 +20,24 @@ public class OrderRepository {
         appDatabase = AppDatabase.getInstance(context);
     }
 
-    public void insertOrder(final Order order) {
-        new AsyncTask<Void, Void, Void>() {
+    public int insertOrder(final Order order) {
+        int id = -1;
+
+        Callable<Integer> callable = new Callable<Integer>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                appDatabase.orderDao().insertOrder(order);
-                return null;
+            public Integer call() throws Exception {
+                return appDatabase.orderDao().insertOrder(order).intValue();
             }
-        }.execute();
+        };
+
+        Future<Integer> future = Executors.newSingleThreadExecutor().submit(callable);
+        try {
+            id = future.get();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        return id;
     }
 
     LiveData<List<Order>> findOrderByUser(int id) {

@@ -36,9 +36,11 @@ public class Order implements Serializable {
     @ColumnInfo(name = "restaurant_id", index = true)
     private int restaurantId;
 
-    public Order(String deliveryAddress) {
+    public Order(String deliveryAddress, int userId) {
         this.deliveryAddress = deliveryAddress;
         totalPrice = 0;
+        discount = 0;
+        this.userId = userId;
     }
 
     public int getId() {
