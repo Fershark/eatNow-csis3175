@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".OrderDetailsView"></activity>
+        <activity android:name=".Checkout"></activity>
         <activity android:name=".ProductDetail" />
         <activity android:name=".Products" />
         <activity

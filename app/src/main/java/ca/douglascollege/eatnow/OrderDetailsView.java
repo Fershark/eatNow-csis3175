@@ -137,6 +137,12 @@ public class OrderDetailsView extends AppCompatActivity {
                 deliveryPickup.setPositiveButton(getString(R.string.checkout), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+//                        Intent i = new Intent(OrderView.this, Checkout.class);
+//                        i.putExtra("order", order);
+//                        i.putExtra("orderDetails", orderDetails);
+//                        i.putExtra("restaurant", restaurant);
+//                        startActivity(i);
+                        // Save order, order details and recommendation if there is a discount
                         order.setDate(new Date());
 
                         OrderRepository orderRepository = new OrderRepository(OrderDetailsView.this.getApplicationContext());

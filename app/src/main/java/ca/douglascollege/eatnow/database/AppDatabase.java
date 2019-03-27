@@ -32,7 +32,7 @@ import ca.douglascollege.eatnow.database.user.UserDao;
         Recommendation.class,
         Order.class,
         OrderDetail.class
-}, version = 12, exportSchema = false)
+}, version = 13, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "EatNow.db";
@@ -167,10 +167,10 @@ public abstract class AppDatabase extends RoomDatabase {
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("Blueberry Muffin", "menu_blue_muffin", "", (float) 1.15, restaurantId));
         products.add(new Product("Strawberry Muffin", "menu_strawberry_muffin", "", (float) 1.35, restaurantId));
-        products.add(new Product("Bacon and Eggs", "restaurant_image", "", (float) 2.65, restaurantId));
+        products.add(new Product("Bacon and Eggs", null, "", (float) 2.65, restaurantId));
         products.add(new Product("Dark Roast Coffee", "menu_coffee", "Strong flavor", (float) 1.50, restaurantId));
         products.add(new Product("Orange Juice", "menu_orange_juice", "Freshly squeezed", (float) 2.50, restaurantId));
-        products.add(new Product("Hot Chocolate", "restaurant_image", "", (float) 2.50, restaurantId));
+        products.add(new Product("Hot Chocolate", null, "", (float) 2.50, restaurantId));
         return products;
     }
 
@@ -178,8 +178,8 @@ public abstract class AppDatabase extends RoomDatabase {
         int restaurantId = 4;//SpaghettiFactory
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("Spagheti and meat ball", "menu_spaghetti", "", (float) 9.99, restaurantId));
-        products.add(new Product("Fettuccine", "restaurant_image", "", (float) 8.98, restaurantId));
-        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Fettuccine", null, "", (float) 8.98, restaurantId));
+        products.add(new Product("Lasagna", null, "", (float) 9.88, restaurantId));
         products.add(new Product("Strawberry Juice", "menu_strawberry_juice", "", (float) 2.60, restaurantId));
         products.add(new Product("Orange Juice", "menu_orange_juice", "Freshly squeezed", (float) 2.50, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.25, restaurantId));
@@ -189,8 +189,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static ArrayList<Product> getKiSushiProducts() {
         int restaurantId = 5;//KiSushi
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Salmon Sushi", "restaurant_image", "Wild Salmon", (float) 1.35, restaurantId));
-        products.add(new Product("Tuna Sushi", "restaurant_image", "Wasabi inside", (float) 1.65, restaurantId));
+        products.add(new Product("Salmon Sushi", null, "Wild Salmon", (float) 1.35, restaurantId));
+        products.add(new Product("Tuna Sushi", null, "Wasabi inside", (float) 1.65, restaurantId));
         products.add(new Product("SMOKED SALMON NIGIRI", "menu_salmon_nigiri", "Wasabi inside", (float) 1.75, restaurantId));
         products.add(new Product("Pop can", "menu_pop_drink", "Variety", (float) 1.50, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.25, restaurantId));
@@ -201,8 +201,8 @@ public abstract class AppDatabase extends RoomDatabase {
         int restaurantId = 6;//Piva
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("Pizza", "menu_pizza", "", (float) 9.99, restaurantId));
-        products.add(new Product("Fettuccine", "restaurant_image", "", (float) 8.98, restaurantId));
-        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Fettuccine", null, "", (float) 8.98, restaurantId));
+        products.add(new Product("Lasagna", null, "", (float) 9.88, restaurantId));
         products.add(new Product("Strawberry Juice", "menu_strawberry_juice", "", (float) 2.60, restaurantId));
         products.add(new Product("Orange Juice", "menu_orange_juice", "Freshly squeezed", (float) 2.50, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.25, restaurantId));
@@ -212,8 +212,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static ArrayList<Product> getLudicaProducts() {
         int restaurantId = 7;//Ludica
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Tuna Pizza", "restaurant_image", "", (float) 9.99, restaurantId));
-        products.add(new Product("Cheese Pizza", "restaurant_image", "", (float) 8.98, restaurantId));
+        products.add(new Product("Tuna Pizza", null, "", (float) 9.99, restaurantId));
+        products.add(new Product("Cheese Pizza", null, "", (float) 8.98, restaurantId));
         products.add(new Product("Crusty Pizza", "menu_pizza", "", (float) 9.88, restaurantId));
         products.add(new Product("Pop", "menu_pop_drink", "", (float) 2.60, restaurantId));
         products.add(new Product("Orange Juice", "menu_orange_juice", "Freshly squeezed", (float) 2.50, restaurantId));
@@ -223,18 +223,18 @@ public abstract class AppDatabase extends RoomDatabase {
     private static ArrayList<Product> getPatsaraProducts() {
         int restaurantId = 8;//Patsara
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Spring Rolls", "restaurant_image", "Vegetarian", (float) 6.88, restaurantId));
-        products.add(new Product("Chicken Satay", "restaurant_image", "4 skewers", (float) 7.90, restaurantId));
-        products.add(new Product("Lemon Chicken", "restaurant_image", "", (float) 8.59, restaurantId));
-        products.add(new Product("Grilled Chicken", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Spring Rolls", null, "Vegetarian", (float) 6.88, restaurantId));
+        products.add(new Product("Chicken Satay", null, "4 skewers", (float) 7.90, restaurantId));
+        products.add(new Product("Lemon Chicken", null, "", (float) 8.59, restaurantId));
+        products.add(new Product("Grilled Chicken", null, "", (float) 9.88, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.25, restaurantId));
         return products;
     }
     private static ArrayList<Product> getSushiYenProducts() {
         int restaurantId = 9;//SushiYen
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Salmon Sushi", "restaurant_image", "Wild Salmon", (float) 8.50, restaurantId));
-        products.add(new Product("Tuna Sushi", "restaurant_image", "Pacific Tuna", (float) 9.50, restaurantId));
+        products.add(new Product("Salmon Sushi", null, "Wild Salmon", (float) 8.50, restaurantId));
+        products.add(new Product("Tuna Sushi", null, "Pacific Tuna", (float) 9.50, restaurantId));
         products.add(new Product("Smoked Salmon", "menu_salmon_nigiri", "Wasabi inside", (float) 8.65, restaurantId));
         products.add(new Product("Pop can", "menu_pop_drink", "Variety", (float) 2.15, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.35, restaurantId));
@@ -243,9 +243,9 @@ public abstract class AppDatabase extends RoomDatabase {
     private static ArrayList<Product> getBavariaProducts() {
         int restaurantId = 10;//Bavaria
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Tenderloin", "restaurant_image", "", (float) 11.99, restaurantId));
-        products.add(new Product("Sirloin", "restaurant_image", "", (float) 11.66, restaurantId));
-        products.add(new Product("Lasagna", "restaurant_image", "", (float) 9.88, restaurantId));
+        products.add(new Product("Tenderloin", null, "", (float) 11.99, restaurantId));
+        products.add(new Product("Sirloin", null, "", (float) 11.66, restaurantId));
+        products.add(new Product("Lasagna", null, "", (float) 9.88, restaurantId));
         products.add(new Product("Strawberry Juice", "menu_strawberry_juice", "", (float) 2.60, restaurantId));
         products.add(new Product("Orange Juice", "menu_orange_juice", "Freshly squeezed", (float) 2.50, restaurantId));
         products.add(new Product("Iced Tea", "menu_iced_tea", "Lemon Iced tea", (float) 1.25, restaurantId));
