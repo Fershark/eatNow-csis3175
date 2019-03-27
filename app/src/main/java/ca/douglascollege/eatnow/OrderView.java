@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
 import ca.douglascollege.eatnow.database.order.Order;
 import ca.douglascollege.eatnow.database.orderDetail.OrderDetail;
@@ -26,6 +27,7 @@ public class OrderView extends AppCompatActivity {
     private ArrayList<OrderDetail> orderDetails;
     private Restaurant restaurant;
     private OrderDetailAdapter orderDetailAdapter;
+    private static final int CHECKOUT_ACTIVITY_REQUEST = 1;
     private boolean isOrderHistory;
 
     @Override
@@ -72,6 +74,11 @@ public class OrderView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("ORDER_VIEW", "GO TO CHECKOUT");
+                Intent i = new Intent(OrderView.this, Checkout.class);
+                i.putExtra("order", order);
+                i.putExtra("orderDetails", orderDetails);
+                i.putExtra("restaurant", restaurant);
+                startActivityForResult(i, CHECKOUT_ACTIVITY_REQUEST);
             }
         });
     }

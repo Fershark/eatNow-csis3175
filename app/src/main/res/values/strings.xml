@@ -74,4 +74,13 @@
     <string name="onlyNumbers">This field only accept numbers</string>
     <string name="checkInternet">Check your internet connection</string>
 
+    <!--Checkout-->
+    <string name="deliveryTime">Estimated time  30 ~ 50 mins</string>
+    <string name="additionalInfo">Address additional information</string>
+    <string name="courier">Flat Rate Delivery Fee</string>
+    <string name="placeOrder">Place Order</string>
+    <string name="cashOnly">Cash payment only</string>
+    <string name="gst">GST</string>
+    <string name="discount">Discount earned by recommendation</string>
+    <string name="total">Total</string>
 </resources>
