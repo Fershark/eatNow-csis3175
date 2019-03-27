@@ -53,7 +53,7 @@ public class ProductDetail extends AppCompatActivity {
         btnMore = findViewById(R.id.btnMore);
         tiSpecialInstructions = findViewById(R.id.tiSpecialInstructions);
         etSpecialInstructions = findViewById(R.id.etSpecialInstructions);
-        clAddToOrder = findViewById(R.id.clAddToOrder);
+        clAddToOrder = findViewById(R.id.clCheckout);
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
 
         // Display image or hide it if there is no image

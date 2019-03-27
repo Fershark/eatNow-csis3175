@@ -35,24 +35,19 @@ class ProductAdapter extends ArrayAdapter<Product> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Product product = getItem(position);
 
-        String imageString = product.getImage();
-        String name = product.getName();
-        String description = product.getDescription();
-        float unitPrice = product.getUnitPrice();
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
         ImageView imageView = convertView.findViewById(R.id.imgImage);
         TextView txtName = convertView.findViewById(R.id.txtName);
         TextView txtDescription = convertView.findViewById(R.id.txtDescription);
-        TextView txtPrice = convertView.findViewById(R.id.txtPrice);
+        TextView txtPrice = convertView.findViewById(R.id.txtTotalPrice);
 
-        if (imageString != null)
-            imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));
-        txtName.setText(name);
-        txtDescription.setText(description);
-        txtPrice.setText(Helper.getCurrencyFormatted(unitPrice));
+        if (product.getImage() != null)
+            imageView.setImageResource(mContext.getResources().getIdentifier(product.getImage(), "drawable", mContext.getPackageName()));
+        txtName.setText(product.getName());
+        txtDescription.setText(product.getDescription());
+        txtPrice.setText(Helper.getCurrencyFormatted(product.getUnitPrice()));
 
         return convertView;
     }

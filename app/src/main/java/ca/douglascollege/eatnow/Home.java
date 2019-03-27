@@ -48,7 +48,7 @@ public class Home extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
-        mSectionsPagerAdapter.addFrag(SearchRestaurant.newInstance(), getString(R.string.order));
+        mSectionsPagerAdapter.addFrag(RestaurantSearch.newInstance(), getString(R.string.order));
         mSectionsPagerAdapter.addFrag(History.newInstance(), getString(R.string.history));
         mSectionsPagerAdapter.addFrag(Profile.newInstance(), getString(R.string.profile));
         mViewPager.setAdapter(mSectionsPagerAdapter);

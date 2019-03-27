@@ -25,7 +25,7 @@ public class OrderDetailRepository {
         }.execute();
     }
 
-    LiveData<List<OrderDetail>> findOrderDetailsByOrder(int id) {
+    public LiveData<List<OrderDetail>> findOrderDetailsByOrder(int id) {
         return appDatabase.orderDetailDao().findOrderDetailsByOrder(id);
     }
 }

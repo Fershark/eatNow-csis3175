@@ -27,7 +27,7 @@
     <string name="edit">Edit</string>
     <string name="userUpdated">Updated Successfully</string>
 
-    <!-- SearchRestaurant fragment -->
+    <!-- RestaurantSearch fragment -->
     <string name="addressMessage">Enter an address</string>
     <string name="promotionMessage">Recommend a friend!\nGive your email to your friend and receive a 10% off in you next order</string>
     <string name="search">Search</string>
@@ -51,6 +51,15 @@
     <string name="imgProduct">Product Image</string>
     <string name="less">-</string>
     <string name="more">+</string>
+
+    <!-- Order View activity -->
+    <string name="yourOrder">Your Order</string>
+    <string name="checkout">Checkout</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="productDescriptionFormat"> %1$s</string>
+    <string name="specialInstructionsFormat">\"%1$s\"</string>
+    <string name="clearImage">Clear Image</string>
+
 
     <!-- Validation -->
     <string name="someErrors">There are some errors</string>

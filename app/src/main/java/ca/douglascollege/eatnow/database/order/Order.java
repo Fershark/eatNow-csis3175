@@ -61,10 +61,6 @@ public class Order implements Serializable {
         return totalPrice;
     }
 
-    public void addToTotalprice(float num) {
-        totalPrice += num;
-    }
-
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }

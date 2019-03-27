@@ -36,14 +36,6 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Restaurant restaurant = getItem(position);
 
-        String imageString = restaurant.getImage();
-        String name = restaurant.getName();
-        String phone = restaurant.getPhone();
-        String type = restaurant.getType();
-        double lat = restaurant.getLatitude();
-        double lng = restaurant.getLongitude();
-        float distance = restaurant.getDistanceFromUser();
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
@@ -52,10 +44,10 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         TextView txtType = convertView.findViewById(R.id.txtDescription);
         TextView txtDistance = convertView.findViewById(R.id.txtDistance);
 
-        imageView.setImageResource(mContext.getResources().getIdentifier(imageString, "drawable", mContext.getPackageName()));
-        txtName.setText(name);
-        txtType.setText(type);
-        txtDistance.setText(decimalFormat.format(distance));
+        imageView.setImageResource(mContext.getResources().getIdentifier(restaurant.getImage(), "drawable", mContext.getPackageName()));
+        txtName.setText(restaurant.getName());
+        txtType.setText(restaurant.getType());
+        txtDistance.setText(decimalFormat.format(restaurant.getDistanceFromUser()));
 
         return convertView;
     }

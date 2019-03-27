@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,16 +23,15 @@ import ca.douglascollege.eatnow.utilities.Helper;
 
 public class Products extends AppCompatActivity {
     private static final String TAG = "PRODUCTS";
-    private static final int VIEW_ORDER_HEIGHT = 60;
     private static final int DETAIL_ACTIVITY_REQUEST = 1;
-    Restaurant restaurant;
-    Order order;
-    List<OrderDetail> orderDetails;
-    ProductAdapter productAdapter;
-    ConstraintLayout clViewOrder;
-    TextView txtProductsNum;
-    TextView txtTotalPrice;
-    private boolean isViewOrderHidden = true;
+    private static final int CHECKOUT_ACTIVITY_REQUEST = 2;
+    private Order order;
+    private Restaurant restaurant;
+    private ArrayList<OrderDetail> orderDetails;
+    private ProductAdapter productAdapter;
+    private ConstraintLayout clViewOrder;
+    private TextView txtProductsNum;
+    private TextView txtTotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +39,9 @@ public class Products extends AppCompatActivity {
         setContentView(R.layout.activity_products);
 
         Intent intent = getIntent();
-        if (intent != null) {
-            restaurant = (Restaurant) intent.getSerializableExtra("restaurant");
-            order = (Order) intent.getSerializableExtra("order");
-        }
+        restaurant = (Restaurant) intent.getSerializableExtra("restaurant");
+        order = (Order) intent.getSerializableExtra("order");
+
         orderDetails = new ArrayList<>();
 
         // Set the image in the toolbar
@@ -81,18 +78,34 @@ public class Products extends AppCompatActivity {
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
 
         updateOrder();
-        Helper.hideComponentInConstraintLayout(clViewOrder);
         clViewOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "CLICKED");
+                Intent i = new Intent(Products.this, OrderView.class);
+                i.putExtra("order", order);
+                i.putExtra("orderDetails", orderDetails);
+                i.putExtra("restaurant", restaurant);
+                startActivityForResult(i, CHECKOUT_ACTIVITY_REQUEST);
             }
         });
     }
 
     private void updateOrder() {
-        txtProductsNum.setText(Integer.toString(orderDetails.size()));
-        txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPrice()));
+        int productsNum = 0;
+        float totalPrice = 0;
+        for (OrderDetail orderDetail : orderDetails) {
+            productsNum += orderDetail.getQuantity();
+            totalPrice += orderDetail.getTotalPrice();
+        }
+
+        if (productsNum == 0)
+            Helper.hideComponentInConstraintLayout(clViewOrder);
+        else {
+            order.setTotalPrice(totalPrice);
+            Helper.showComponentInConstraintLayout(clViewOrder, (int) getResources().getDimension(R.dimen.bottom_banner_height));
+            txtProductsNum.setText(Integer.toString(productsNum));
+            txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice));
+        }
     }
 
     @Override
@@ -102,14 +115,12 @@ public class Products extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 OrderDetail orderDetail = (OrderDetail) data.getSerializableExtra("orderDetail");
                 orderDetails.add(orderDetail);
-                order.addToTotalprice(orderDetail.getTotalPrice());
                 updateOrder();
-
-                if (isViewOrderHidden) {
-                    Helper.showComponentInConstraintLayout(clViewOrder, (int) getResources().getDimension(R.dimen.bottom_banner_height));
-                    isViewOrderHidden = false;
-                }
             }
+        }
+        else if (requestCode == CHECKOUT_ACTIVITY_REQUEST) {
+            orderDetails = (ArrayList<OrderDetail>) data.getSerializableExtra("orderDetails");
+            updateOrder();
         }
     }
 }

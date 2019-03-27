@@ -14,12 +14,12 @@ import android.widget.EditText;
 import ca.douglascollege.eatnow.database.order.Order;
 import ca.douglascollege.eatnow.utilities.Validation;
 
-public class SearchRestaurant extends Fragment {
+public class RestaurantSearch extends Fragment {
     TextInputLayout tiAddress;
     EditText etAddress;
     Validation validation;
 
-    public SearchRestaurant() {
+    public RestaurantSearch() {
         // Required empty public constructor
     }
 
@@ -27,17 +27,17 @@ public class SearchRestaurant extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment SearchRestaurant.
+     * @return A new instance of fragment RestaurantSearch.
      */
-    public static SearchRestaurant newInstance() {
-        SearchRestaurant fragment = new SearchRestaurant();
+    public static RestaurantSearch newInstance() {
+        RestaurantSearch fragment = new RestaurantSearch();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_search_restaurant, container, false);
+        View v = inflater.inflate(R.layout.fragment_restaurant_search, container, false);
         Button btnSearch = v.findViewById(R.id.btnSearch);
         etAddress = v.findViewById(R.id.etAddress);
         tiAddress = v.findViewById(R.id.tiAddress);

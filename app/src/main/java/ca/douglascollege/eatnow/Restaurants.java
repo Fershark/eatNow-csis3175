@@ -68,6 +68,8 @@ public class Restaurants extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Restaurant restaurant = (Restaurant) parent.getAdapter().getItem(position);
+                order.setRestaurantId(restaurant.getId());
+
                 Intent i = new Intent(Restaurants.this, Products.class);
                 i.putExtra("restaurant", restaurant);
                 i.putExtra("order", order);
