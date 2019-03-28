@@ -83,13 +83,14 @@ public class Checkout extends AppCompatActivity {
             Helper.hideComponentInConstraintLayout(txtDeliveryFee);
             txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed()));
         }
+        txtSubtotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed()));
+
         if (order.getDiscount() > 0)
             txtDiscountPrice.setText(Helper.getCurrencyFormatted(order.getTotalPrice() * order.getDiscount()));
         else {
             Helper.hideComponentInConstraintLayout(txtDiscount);
             Helper.hideComponentInConstraintLayout(txtDiscountPrice);
         }
-        txtSubtotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPrice()));
 
         clBottom.setOnClickListener(new View.OnClickListener() {
             @Override

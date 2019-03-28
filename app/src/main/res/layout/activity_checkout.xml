@@ -97,12 +97,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/courier"
                 android:textSize="20sp"
                 android:theme="@style/AppTheme.TextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCheckoutTime" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSubtotal" />
 
             <TextView
                 android:id="@+id/txtDeliveryFee"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/subtotal"
                 android:textSize="20sp"
                 android:theme="@style/AppTheme.TextView"
@@ -145,12 +145,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/discount"
                 android:textSize="20sp"
                 android:theme="@style/AppTheme.TextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDelivery" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCheckoutTime" />
 
             <TextView
                 android:id="@+id/txtDiscountPrice"
@@ -168,23 +168,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/total"
                 android:textSize="20sp"
                 android:theme="@style/AppTheme.TextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtSubtotal" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDelivery" />
 
             <TextView
                 android:id="@+id/txtTotalPrice"
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:gravity="right|end"
                 android:textSize="20sp"
                 android:theme="@style/AppTheme.TextView"
                 app:layout_constraintEnd_toEndOf="@+id/txtDeliveryFee"
-                app:layout_constraintTop_toBottomOf="@+id/txtSubtotalPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDeliveryFee" />
 
             <TextView
                 android:id="@+id/txtCashOnly"
