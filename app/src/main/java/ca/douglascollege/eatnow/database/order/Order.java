@@ -3,6 +3,7 @@ package ca.douglascollege.eatnow.database.order;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -35,6 +36,8 @@ public class Order implements Serializable {
     private int userId;
     @ColumnInfo(name = "restaurant_id", index = true)
     private int restaurantId;
+    @Ignore
+    private int orderDetailsCount;
 
     public Order(String deliveryAddress, int userId) {
         this.deliveryAddress = deliveryAddress;
@@ -105,6 +108,23 @@ public class Order implements Serializable {
 
     public void setRestaurantId(int restaurantId) {
         this.restaurantId = restaurantId;
+    }
+
+    public float getTotalPriceSummed() {
+        float totalPrice = 0;
+        if (getDiscount() > 0)
+            totalPrice = getTotalPrice() * (1 - getDiscount());
+        else
+            totalPrice = getTotalPrice();
+        return totalPrice;
+    }
+
+    public int getOrderDetailsCount() {
+        return orderDetailsCount;
+    }
+
+    public void setOrderDetailsCount(int orderDetailsCount) {
+        this.orderDetailsCount = orderDetailsCount;
     }
 
 }

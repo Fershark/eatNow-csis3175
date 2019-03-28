@@ -15,4 +15,7 @@ public interface OrderDetailDao {
 
     @Query("SELECT * FROM OrderDetail WHERE order_id = :id")
     LiveData<List<OrderDetail>> findOrderDetailsByOrder(int id);
+
+    @Query("SELECT COUNT(*) FROM OrderDetail WHERE order_id = :id")
+    int countByOrder(int id);
 }

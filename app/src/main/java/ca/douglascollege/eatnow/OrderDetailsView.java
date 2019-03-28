@@ -104,15 +104,14 @@ public class OrderDetailsView extends AppCompatActivity {
                 txtTitleDialog.setTextSize(getResources().getDimensionPixelSize(R.dimen.dialog_title_text_size));
                 txtTitleDialog.setTextColor(Color.BLACK);
 
+                totalPrice = order.getTotalPriceSummed();
                 if (order.getDiscount() > 0) {
-                    totalPrice = order.getTotalPrice() * (1 - order.getDiscount());
                     String discount = getString(R.string.discountDialog, Helper.getCurrencyFormatted(order.getTotalPrice() * order.getDiscount()));
                     String price = getString(R.string.priceDialog, Helper.getCurrencyFormatted(totalPrice));
                     titleText = discount + price;
-                } else {
-                    totalPrice = order.getTotalPrice();
-                    titleText = getString(R.string.priceDialog, Helper.getCurrencyFormatted(order.getTotalPrice()));
-                }
+                } else
+                    titleText = getString(R.string.priceDialog, Helper.getCurrencyFormatted(totalPrice));
+
 
                 txtTitleDialog.setText(titleText);
                 deliveryPickup.setCustomTitle(txtTitleDialog);

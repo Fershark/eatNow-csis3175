@@ -93,4 +93,8 @@
     <string name="gst">GST</string>
     <string name="discountText">Discount earned by recommendation</string>
     <string name="total">Total</string>
+
+    <!-- History -->
+    <string name="delivery">Delivery</string>
+    <string name="pickUp">Pick up</string>
 </resources>

@@ -104,10 +104,7 @@ public class Products extends AppCompatActivity {
             order.setTotalPrice(totalPrice);
             Helper.showComponentInConstraintLayout(clViewOrder, (int) getResources().getDimension(R.dimen.bottom_banner_height));
             txtProductsNum.setText(Integer.toString(productsNum));
-            if (order.getDiscount() > 0)
-                txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice * (1 - order.getDiscount())));
-            else
-                txtTotalPrice.setText(Helper.getCurrencyFormatted(totalPrice));
+            txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed()));
         }
     }
 

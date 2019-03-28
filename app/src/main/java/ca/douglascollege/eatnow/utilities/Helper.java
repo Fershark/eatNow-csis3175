@@ -5,17 +5,19 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import ca.douglascollege.eatnow.database.user.User;
 import ca.douglascollege.eatnow.database.user.UserRepository;
 
 public class Helper {
     private static final DecimalFormat CURRENCY_FORMATTER = new DecimalFormat("$ #,###.##");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
     public static final float RECOMMENDATION_DISCOUNT = .10f;
     public static final int DELIVERY_FEE = 5;
     private Context context;
@@ -110,5 +112,9 @@ public class Helper {
      */
     public static String getCurrencyFormatted(float currency) {
         return CURRENCY_FORMATTER.format(currency);
+    }
+
+    public static String getDateFormatted(Date date) {
+       return DATE_FORMAT.format(date);
     }
 }

@@ -40,7 +40,7 @@ public class OrderRepository {
         return id;
     }
 
-    LiveData<List<Order>> findOrderByUser(int id) {
+    public LiveData<List<Order>> findOrderByUser(int id) {
         return appDatabase.orderDao().findOrderByUser(id);
     }
 }
