@@ -49,11 +49,13 @@ public class OrderAdapter extends ArrayAdapter<Order> {
 
         txtRestaurant.setText(restaurantHashMap.get(order.getRestaurantId()).getName());
         txtDate.setText(Helper.getDateFormatted(order.getDate()));
-        if(order.isDelivery())
+        if (order.isDelivery()) {
             txtType.setText(context.getString(R.string.delivery));
-        else
+            txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed() + Helper.DELIVERY_FEE));
+        } else {
             txtType.setText(context.getString(R.string.pickUp));
-        txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed()));
+            txtTotalPrice.setText(Helper.getCurrencyFormatted(order.getTotalPriceSummed()));
+        }
         txtQuantity.setText(Integer.toString(order.getOrderDetailsCount()));
 
         return convertView;

@@ -22,12 +22,14 @@ class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
     private OrderDetailsView mContext;
     private HashMap<Integer, Product> productsHashMap;
     private int mResource;
+    private boolean isOrderHistory;
 
-    public OrderDetailAdapter(Context context) {
+    public OrderDetailAdapter(Context context, boolean isOrderHistory) {
         super(context, R.layout.adapter_order_detail_layout);
         mContext = (OrderDetailsView) context;
         mResource = R.layout.adapter_order_detail_layout;
         productsHashMap = new HashMap<>();
+        this.isOrderHistory = isOrderHistory;
     }
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
@@ -79,6 +81,8 @@ class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
                 txtDescription.setText(mContext.getString(R.string.productDescriptionFormat, product.getDescription()));
         }
 
+        if (isOrderHistory)
+            Helper.hideComponentInConstraintLayout(ibtnClear);
         ibtnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,5 +91,10 @@ class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
         });
 
         return convertView;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return !isOrderHistory;
     }
 }

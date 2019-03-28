@@ -82,4 +82,9 @@
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
+
+    <!-- Text View styles -->
+    <style name="AppTheme.TextView">
+        <item name="android:drawablePadding">10dp</item>
+    </style>
 </resources>

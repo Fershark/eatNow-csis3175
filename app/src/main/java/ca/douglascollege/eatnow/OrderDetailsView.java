@@ -15,18 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ca.douglascollege.eatnow.database.order.Order;
-import ca.douglascollege.eatnow.database.order.OrderRepository;
 import ca.douglascollege.eatnow.database.orderDetail.OrderDetail;
 import ca.douglascollege.eatnow.database.orderDetail.OrderDetailRepository;
-import ca.douglascollege.eatnow.database.recommendation.Recommendation;
-import ca.douglascollege.eatnow.database.recommendation.RecommendationRepository;
 import ca.douglascollege.eatnow.database.restaurant.Restaurant;
 import ca.douglascollege.eatnow.utilities.Helper;
 
@@ -49,44 +44,47 @@ public class OrderDetailsView extends AppCompatActivity {
         order = (Order) intent.getSerializableExtra("order");
         orderDetails = (ArrayList<OrderDetail>) intent.getSerializableExtra("orderDetails");
         restaurant = (Restaurant) intent.getSerializableExtra("restaurant");
+        isOrderHistory = intent.getBooleanExtra("isOrderHistory", false);
 
         // Set the image in the toolbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         //Set title of action bar
-        setTitle(getString(R.string.yourOrder));
+        if (isOrderHistory)
+            setTitle(getString(R.string.yourPreviousOrder));
+        else
+            setTitle(getString(R.string.yourOrder));
 
         TextView txtRestaurant = findViewById(R.id.txtRestaurant);
         ConstraintLayout clCheckout = findViewById(R.id.clCheckout);
         ListView listView = findViewById(R.id.lvOrder);
-
         //Footer
         View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.order_view_list_footer_layout, null, false);
         listView.addFooterView(footerView, null, false);
         txtSubtotal = footerView.findViewById(R.id.txtSubtotal);
         txtDiscount = footerView.findViewById(R.id.txtDiscount);
         txtDiscountText = footerView.findViewById(R.id.txtDiscountText);
-
-        setTotalPrice();
+        orderDetailAdapter = new OrderDetailAdapter(this, isOrderHistory);
 
         //Adapter
-        orderDetailAdapter = new OrderDetailAdapter(this);
+        txtRestaurant.setText(restaurant.getName());
         listView.setAdapter(orderDetailAdapter);
-
-        //TODO: Get restaurant if there is not for show order history
-        if (restaurant == null) {
-            isOrderHistory = true;
+        if (isOrderHistory) {
             OrderDetailRepository orderDetailRepository = new OrderDetailRepository(getApplicationContext());
             orderDetailRepository.findOrderDetailsByOrder(order.getId()).observe(this, new Observer<List<OrderDetail>>() {
                 @Override
                 public void onChanged(@Nullable List<OrderDetail> orderDetails) {
+                    OrderDetailsView.this.orderDetails = (ArrayList<OrderDetail>) orderDetails;
+                    setTotalPrice();
                     orderDetailAdapter.setOrderDetails(orderDetails);
                 }
             });
+            clCheckout.setClickable(false);
+            Helper.hideComponentInConstraintLayout(clCheckout);
         } else {
+            setTotalPrice();
             orderDetailAdapter.setOrderDetails(orderDetails);
-            txtRestaurant.setText(restaurant.getName());
         }
 
         clCheckout.setOnClickListener(new View.OnClickListener() {
@@ -136,31 +134,11 @@ public class OrderDetailsView extends AppCompatActivity {
                 deliveryPickup.setPositiveButton(getString(R.string.checkout), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        Intent i = new Intent(OrderView.this, Checkout.class);
-//                        i.putExtra("order", order);
-//                        i.putExtra("orderDetails", orderDetails);
-//                        i.putExtra("restaurant", restaurant);
-//                        startActivity(i);
-                        // Save order, order details and recommendation if there is a discount
-                        order.setDate(new Date());
-
-                        OrderRepository orderRepository = new OrderRepository(OrderDetailsView.this.getApplicationContext());
-                        OrderDetailRepository orderDetailRepository = new OrderDetailRepository(OrderDetailsView.this.getApplicationContext());
-
-                        int orderId = orderRepository.insertOrder(order);
-                        for (OrderDetail orderDetail : orderDetails) {
-                            orderDetail.setOrderId(orderId);
-                            orderDetailRepository.insertOrderDetail(orderDetail);
-                        }
-                        if (order.getDiscount() > 0) {
-                            RecommendationRepository recommendationRepository = new RecommendationRepository(OrderDetailsView.this.getApplicationContext());
-                            Recommendation recommendation = recommendationRepository.findUnsedRecommendationByUser(order.getUserId());
-                            recommendation.setDateUsed(new Date());
-                            recommendationRepository.updateRecommendation(recommendation);
-                        }
-
-                        Toast.makeText(OrderDetailsView.this.getApplicationContext(), R.string.orderComplete, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(OrderDetailsView.this, Home.class));
+                        Intent i = new Intent(OrderDetailsView.this, Checkout.class);
+                        i.putExtra("order", order);
+                        i.putExtra("orderDetails", orderDetails);
+                        i.putExtra("restaurant", restaurant);
+                        startActivity(i);
                     }
                 });
                 deliveryPickup.setNegativeButton(getString(R.string.cancel), null);

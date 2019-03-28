@@ -1,12 +1,14 @@
 package ca.douglascollege.eatnow;
 
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -55,6 +57,20 @@ public class History extends Fragment {
         userId = -1;
         restaurantHashMap = new HashMap<>();
         getOrders();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Order order = (Order) parent.getAdapter().getItem(position);
+
+                Intent i = new Intent(History.this.getActivity(), Checkout.class);
+                i.putExtra("order", order);
+                i.putExtra("restaurant", restaurantHashMap.get(order.getRestaurantId()));
+                i.putExtra("isOrderHistory", true);
+                startActivity(i);
+            }
+        });
+
         return view;
     }
 

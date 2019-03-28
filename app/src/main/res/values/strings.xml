@@ -54,6 +54,7 @@
 
     <!-- Order View activity -->
     <string name="yourOrder">Your Order</string>
+    <string name="yourPreviousOrder">Your Previous Order</string>
     <string name="checkout">Checkout</string>
     <string name="cancel">Cancel</string>
     <string name="productDescriptionFormat">• %1$s</string>
@@ -64,7 +65,7 @@
     <string name="discountDialog">Discount: %1$s\n</string>
     <string name="priceDialog">Subtotal:  %1$s</string>
     <string name="totalPriceDialog">Total:     %1$s</string>
-    <string name="deliveryFee">Fee:       %1$s\n</string>
+    <string name="deliveryFee">Delivery Fee: %1$s\n</string>
     <array name="deliveryPickup">
         <item>Pick up</item>
         <item>Delivery</item>
@@ -87,11 +88,11 @@
     <!--Checkout-->
     <string name="deliveryTime">Estimated time  30 ~ 50 mins</string>
     <string name="additionalInfo">Address additional information</string>
-    <string name="courier">Flat Rate Delivery Fee</string>
+    <string name="courier">Delivery Fee</string>
     <string name="placeOrder">Place Order</string>
+    <string name="viewProducts">View Products</string>
     <string name="cashOnly">Cash payment only</string>
     <string name="gst">GST</string>
-    <string name="discountText">Discount earned by recommendation</string>
     <string name="total">Total</string>
 
     <!-- History -->
