@@ -1,9 +1,11 @@
 package ca.douglascollege.eatnow;
 
 import android.arch.lifecycle.Observer;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -121,5 +123,27 @@ public class Products extends AppCompatActivity {
             orderDetails = (ArrayList<OrderDetail>) data.getSerializableExtra("orderDetails");
             updateOrder();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(orderDetails.size() > 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_DialogTheme);
+            builder.setTitle("Alert");
+            builder.setMessage("You will lose your current order.\nAre your sure?");
+
+            // add the buttons
+            builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Products.this.finish();
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else
+            finish();
     }
 }
